@@ -8,7 +8,15 @@ import TrustBar from '@/components/TrustBar';
 import SubServiceGrid from '@/components/SubServiceGrid';
 import { allCitySlugs, getCityBySlug, cities } from '@/lib/cities';
 import { allServiceSlugs, getServiceBySlug, services } from '@/lib/services';
-import { buildMetadata, breadcrumbJsonLd, faqJsonLd, serviceJsonLd, SITE_URL } from '@/lib/seo';
+import {
+  buildMetadata,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serviceJsonLd,
+  webPageJsonLd,
+  articleJsonLd,
+  SITE_URL,
+} from '@/lib/seo';
 import { generateCityServiceContent } from '@/lib/content';
 
 const RESERVED = new Set([
@@ -35,9 +43,17 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   if (!city || !service) return {};
   return buildMetadata({
     title: `${service.name} in ${city.name}, CA`,
-    description: `${service.name} in ${city.name}, ${city.region}. ${service.shortDescription}`,
+    description: `${service.name} in ${city.name}, ${city.region}, ${city.county} County. ${service.shortDescription} Serving ZIPs ${city.zips.join(', ')}.`,
     path: `/${citySlug}/${serviceSlug}`,
     image: service.heroImage,
+    keywords: [
+      `${service.name.toLowerCase()} ${city.name}`,
+      `${service.name.toLowerCase()} near me ${city.name}`,
+      `${city.name} ${service.name.toLowerCase()} cost`,
+      `best ${service.name.toLowerCase()} ${city.name}`,
+      `${service.name.toLowerCase()} ${city.county} County`,
+      ...city.zips.map((z) => `${service.name.toLowerCase()} ${z}`),
+    ],
   });
 }
 
@@ -88,16 +104,30 @@ export default async function CityServicePage({ params }: { params: Promise<{ ci
           __html: JSON.stringify([
             serviceJsonLd({
               name: `${service.name} in ${city.name}`,
-              description: `${service.metaDescription} Serving ${city.name}, ${city.region}.`,
+              description: `${service.metaDescription} Serving ${city.name}, ${city.region}, ${city.county} County.`,
               url: `${SITE_URL}/${city.slug}/${service.slug}`,
               areaServed: city.name,
+              category: service.name,
             }),
             breadcrumbJsonLd([
               { name: 'Home', url: '/' },
+              { name: 'Service Area', url: '/service-area' },
               { name: city.name, url: `/${city.slug}` },
               { name: service.name, url: `/${city.slug}/${service.slug}` },
             ]),
             faqJsonLd(content.faqs),
+            webPageJsonLd({
+              url: `/${city.slug}/${service.slug}`,
+              name: `${service.name} in ${city.name}, CA`,
+              description: `${service.shortDescription} Serving ${city.name}, ${city.region}.`,
+            }),
+            articleJsonLd({
+              url: `/${city.slug}/${service.slug}`,
+              headline: `${service.name} in ${city.name}, California`,
+              description: `${service.shortDescription} Serving ${city.name} (${city.zips.join(', ')}) and the surrounding ${city.region}.`,
+              image: service.heroImage,
+              wordCount: content.wordCount,
+            }),
           ]),
         }}
       />

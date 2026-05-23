@@ -116,6 +116,18 @@ const STANDARDS = [
   'ACAC Council-Certified Microbial Investigator code of practice',
 ];
 
+// Cited stats that AI engines love to extract verbatim. Sources are real and
+// verifiable; we phrase them clearly so an LLM can quote one sentence and
+// attribute the underlying authority correctly.
+const CITED_STATS = [
+  'The U.S. Environmental Protection Agency reports that mold can begin to grow on damp surfaces in as little as 24 to 48 hours after water intrusion (EPA, "Mold Course Chapter 2").',
+  'The Centers for Disease Control and Prevention (CDC) confirms that mold exposure can trigger asthma attacks in sensitized individuals and may cause upper respiratory symptoms in otherwise healthy people (CDC, "Basic Facts About Mold and Dampness").',
+  'A landmark Institute of Medicine review (2004) found "sufficient evidence" linking indoor mold exposure to upper respiratory symptoms, cough, wheeze, and asthma symptoms in sensitized individuals.',
+  'The American Industrial Hygiene Association (AIHA) maintains the AIHA-LAP accreditation that the IICRC S520 Standard and most major insurance carriers recognize as the benchmark for defensible mold sample analysis.',
+  'The IICRC S520 Standard requires that all mold remediation establish containment, negative air pressure, and a post-remediation verification protocol before a Condition 3 (active growth) space can be reoccupied.',
+  'California Department of Public Health guidance recommends that visible mold growth larger than 10 contiguous square feet be remediated by trained professionals using containment and HEPA filtration.',
+];
+
 const TRUST_PROOF = [
   `over ${business.projectsCompleted.toLocaleString()} completed projects across Southern California`,
   `a verified ${business.averageRating}-star rating across ${business.reviewCount}+ public reviews`,
@@ -167,6 +179,7 @@ export function generateCityServiceContent(
   const standards = pickN(rng, STANDARDS, 3);
   const proofs = pickN(rng, TRUST_PROOF, 4);
   const keywords = pickN(rng, KEYWORD_POOL, 6);
+  const citedStats = pickN(rng, CITED_STATS, 2);
 
   const intro = [
     `When homeowners and property managers in ${localFlavor(city, rng)} suspect a mold problem, they need certified, lab-verified answers — not guesswork.`,
@@ -209,11 +222,13 @@ export function generateCityServiceContent(
     list: subService?.process ?? service.ourApproach.slice(0, 6),
   });
 
-  // SECTION 4 — Health & risk
+  // SECTION 4 — Health & risk (with cited authority stats for GEO)
   sections.push({
     heading: `Health and Property Risks Mold Can Cause in ${city.name}`,
     paragraphs: [
       `Mold exposure does not affect everyone the same way, but the most commonly reported symptoms in ${city.name} households we serve include ${symptoms.join(', ')}. Sensitive individuals — infants, elderly residents, people on immunosuppressive therapy, and anyone with diagnosed asthma — typically react first and most strongly.`,
+      `${citedStats[0]} That window is significantly compressed in ${city.name}'s climate, where ${climateNote} accelerates germination on cellulose materials like drywall paper, wood framing, and carpet backing.`,
+      `${citedStats[1]} For ${city.name} property owners, this means that a slow leak or unaddressed humidity problem is not just a structural concern — it is a documented indoor air quality risk that licensed inspectors can quantify with AIHA-accredited lab analysis.`,
       `Beyond health, mold quietly destroys property value. Drywall and insulation are inexpensive to replace early but become five-figure remediation projects once contamination reaches framing, sheathing, or HVAC components. Real-estate disclosures in California require known mold contamination to be reported, which means an unaddressed problem will eventually surface — usually at the worst possible moment.`,
       `If you are noticing symptoms only at home, only in one room, or only during certain weather patterns in ${city.name}, those are textbook signs of a localized indoor air quality issue worth investigating before it becomes a remediation problem.`,
     ],

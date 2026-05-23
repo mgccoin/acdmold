@@ -5,7 +5,12 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCallButton from '@/components/StickyCallButton';
 import TopBar from '@/components/TopBar';
-import { localBusinessJsonLd, organizationJsonLd } from '@/lib/seo';
+import {
+  localBusinessJsonLd,
+  organizationJsonLd,
+  webSiteJsonLd,
+  definedTermSetJsonLd,
+} from '@/lib/seo';
 import { business } from '@/lib/business';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -22,17 +27,26 @@ export const metadata: Metadata = {
   authors: [{ name: business.name, url: business.url }],
   generator: 'Next.js',
   keywords: [
-    'mold testing',
-    'mold inspection',
-    'mold remediation',
-    'black mold removal',
-    'air quality testing',
-    'IICRC mold remediation',
-    'AIHA mold lab',
+    'mold testing Los Angeles',
+    'mold inspection Los Angeles County',
+    'mold remediation Los Angeles',
+    'black mold removal LA',
+    'air quality testing Los Angeles',
+    'IICRC mold remediation California',
+    'AIHA accredited mold lab',
     'Encino mold inspector',
-    'Los Angeles mold remediation',
-    'Ventura County mold inspection',
+    'Beverly Hills mold inspection',
+    'Santa Monica mold testing',
+    'Pasadena mold remediation',
+    'Long Beach mold removal',
     'San Fernando Valley mold testing',
+    'Ventura County mold inspection',
+    'mold inspector near me',
+    'same-day mold inspection',
+    'emergency mold remediation 24/7',
+    'Stachybotrys black mold removal',
+    'post-remediation clearance testing California',
+    'CSLB licensed mold remediation',
   ],
   category: 'Home Services',
   manifest: '/site.webmanifest',
@@ -40,8 +54,20 @@ export const metadata: Metadata = {
     icon: '/favicon.svg',
     apple: '/apple-touch-icon.png',
   },
+  other: {
+    'geo.region': 'US-CA',
+    'geo.placename': `${business.address.city}, California`,
+    'geo.position': `${business.geo.latitude};${business.geo.longitude}`,
+    ICBM: `${business.geo.latitude}, ${business.geo.longitude}`,
+  },
+  // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION / _BING_ / _YANDEX_ in .env.local
+  // to enable webmaster-tools verification without committing the codes.
   verification: {
-    google: 'replace-with-google-site-verification',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ?? '',
+      'yandex-verification': process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION ?? '',
+    },
   },
 };
 
@@ -76,6 +102,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSetJsonLd()) }}
         />
       </body>
     </html>

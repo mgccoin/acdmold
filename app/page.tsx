@@ -6,14 +6,34 @@ import CTASection from '@/components/CTASection';
 import FAQ from '@/components/FAQ';
 import Testimonials from '@/components/Testimonials';
 import CityGrid from '@/components/CityGrid';
-import { buildMetadata, faqJsonLd } from '@/lib/seo';
+import {
+  buildMetadata,
+  faqJsonLd,
+  webPageJsonLd,
+  articleJsonLd,
+  howToJsonLd,
+  SITE_URL,
+} from '@/lib/seo';
 import { business } from '@/lib/business';
+import { cities } from '@/lib/cities';
 
 export const metadata = buildMetadata({
-  title: `${business.name} | Mold Testing, Inspection & Remediation Across Los Angeles`,
-  description: `${business.shortDescription} Same-day appointments, AIHA-accredited lab results, IICRC-certified crews. Call ${business.phoneDisplay}.`,
+  title: `${business.name} | Mold Testing, Inspection & Remediation in Los Angeles County, CA`,
+  description: `${business.shortDescription} Serving ${cities.length}+ cities across Los Angeles and Ventura County. Same-day appointments, AIHA-accredited lab results, IICRC-certified crews. Call ${business.phoneDisplay}.`,
   path: '/',
   image: '/images/og/home.png',
+  keywords: [
+    'mold inspection Los Angeles County',
+    'mold testing Los Angeles',
+    'mold remediation Los Angeles',
+    'AIHA accredited mold lab Los Angeles',
+    'IICRC mold remediation California',
+    'same-day mold inspection LA',
+    'black mold removal Los Angeles',
+    'emergency mold remediation 24/7',
+    'certified mold inspector near me',
+    'Encino mold inspector',
+  ],
 });
 
 const homeFaqs = [
@@ -51,17 +71,66 @@ const homeFaqs = [
   },
 ];
 
+const inspectionHowToSteps = [
+  {
+    name: 'Call or book online',
+    text: `Call ${business.phoneDisplay} or book online. We confirm a 2-hour arrival window — usually within 24–48 hours, or same-day for active water emergencies anywhere in Los Angeles County or Ventura County.`,
+  },
+  {
+    name: 'Walk-through with a certified inspector',
+    text: 'An ACAC Council-Certified Microbial Investigator arrives in a marked vehicle, walks the property with you, and identifies likely moisture sources using thermal imaging, moisture meters, and borescope inspection.',
+  },
+  {
+    name: 'Targeted sampling (when needed)',
+    text: 'Air-O-Cell spore-trap cassettes and surface lifts are collected per the IICRC S520 Standard, sealed in chain-of-custody containers, and shipped same-day to an AIHA-LAP accredited laboratory.',
+  },
+  {
+    name: 'Plain-English written report',
+    text: 'You receive a written report with photos, lab results, identified moisture sources, and a clear scope of recommended work — typically within 3–5 business days (24-hour rush available).',
+  },
+  {
+    name: 'Remediation (only if needed)',
+    text: 'If active mold growth is confirmed, IICRC S520-compliant remediation establishes containment, negative air pressure, HEPA filtration, and ends with independent post-remediation verification before reoccupancy.',
+  },
+];
+
 export default function HomePage() {
   return (
     <>
       <Hero
         eyebrow="Certified · Local · Same-Day Available"
-        title="Trusted Mold Testing, Inspection & Remediation Across Southern California"
-        subtitle="ACD Mold provides ACAC-certified inspections, AIHA-accredited lab testing, and IICRC S520 compliant remediation across Los Angeles and Ventura County. Honest answers, transparent pricing, and a workmanship guarantee on every project."
+        title="Trusted Mold Testing, Inspection & Remediation Across Los Angeles County"
+        subtitle={`ACD Mold provides ACAC-certified inspections, AIHA-accredited lab testing, and IICRC S520 compliant remediation across ${cities.length}+ cities in Los Angeles County and Ventura County — from Beverly Hills, Santa Monica, and Pasadena to Long Beach, Burbank, Glendale, and the entire San Fernando Valley. Honest answers, transparent pricing, and a workmanship guarantee on every project.`}
         imageSrc="/images/hero/main-hero.png"
-        imageAlt="ACD Mold inspector using thermal imaging camera in a Southern California home"
+        imageAlt="ACD Mold inspector using thermal imaging camera in a Los Angeles County home"
       />
       <TrustBar />
+
+      {/* GEO-friendly intro: explicitly lists LA County hubs in prose, so AI
+          engines extracting plain-text from this page see the named entity
+          coverage instead of relying on the city grid alone. */}
+      <section className="bg-white py-10">
+        <div className="container-prose">
+          <p className="lead text-lg leading-relaxed text-slate-700">
+            <strong>ACD Mold</strong> is a CSLB-licensed, IICRC-certified mold testing, inspection, and remediation
+            company headquartered in <strong>Encino, California</strong>. From our office at {business.address.full} we
+            dispatch ACAC Council-Certified Microbial Investigators (CMI) and IICRC S520-trained remediation crews to{' '}
+            <strong>{cities.length}+ cities across Los Angeles County and Ventura County</strong>, including{' '}
+            <strong>
+              Los Angeles, Beverly Hills, Santa Monica, West Hollywood, Culver City, Marina del Rey, Venice, Pacific
+              Palisades, Malibu, Pasadena, South Pasadena, Glendale, Burbank, Sherman Oaks, Studio City, Encino,
+              Tarzana, Woodland Hills, Calabasas, Long Beach, San Pedro, Torrance, Manhattan Beach, Hermosa Beach,
+              Redondo Beach, Inglewood, El Segundo, Hawthorne, Palos Verdes Estates, Rancho Palos Verdes, Hollywood,
+              Westwood, Brentwood, Bel Air, Downtown LA, Silver Lake, Echo Park, Hancock Park, Mid-City, Eagle Rock,
+              Highland Park, Alhambra, Arcadia, San Marino, La Cañada Flintridge, Santa Clarita, Valencia, Lancaster,
+              Palmdale, Thousand Oaks, Westlake Village, Agoura Hills, Camarillo, Oxnard, Ventura, and Simi Valley
+            </strong>
+            . Same-day appointments are available across the entire service area; AIHA-LAP accredited laboratory
+            analysis is included on every test; written workmanship guarantees back every remediation project.
+          </p>
+        </div>
+      </section>
+
       <ServiceCards />
       <ProcessSteps />
       <Testimonials />
@@ -70,7 +139,31 @@ export default function HomePage() {
       <CTASection />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(homeFaqs)) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            faqJsonLd(homeFaqs),
+            webPageJsonLd({
+              url: '/',
+              name: `${business.name} | Mold Testing, Inspection & Remediation in Los Angeles County, CA`,
+              description: business.shortDescription,
+            }),
+            articleJsonLd({
+              url: '/',
+              headline: 'Mold Testing, Inspection & Remediation in Los Angeles County, CA',
+              description: business.shortDescription,
+              image: '/images/og/home.png',
+              wordCount: 1100,
+            }),
+            howToJsonLd({
+              name: 'How a Mold Inspection Works in Los Angeles County',
+              description:
+                'The exact 5-step process ACD Mold follows for every certified mold inspection across Los Angeles County and Ventura County, California.',
+              totalTime: 'PT3H',
+              estimatedCost: { min: 295, max: 595 },
+              steps: inspectionHowToSteps,
+            }),
+          ]),
+        }}
       />
     </>
   );

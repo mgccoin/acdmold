@@ -10,7 +10,16 @@ import ProcessSteps from '@/components/ProcessSteps';
 import Testimonials from '@/components/Testimonials';
 import { allCitySlugs, getCityBySlug } from '@/lib/cities';
 import { services } from '@/lib/services';
-import { buildMetadata, breadcrumbJsonLd, faqJsonLd, localBusinessJsonLd, SITE_URL } from '@/lib/seo';
+import {
+  buildMetadata,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  localBusinessJsonLd,
+  webPageJsonLd,
+  articleJsonLd,
+  serviceJsonLd,
+  SITE_URL,
+} from '@/lib/seo';
 import { generateCityServiceContent } from '@/lib/content';
 import { business } from '@/lib/business';
 
@@ -30,9 +39,20 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   if (!city) return {};
   return buildMetadata({
     title: `Mold Testing, Inspection & Remediation in ${city.name}, CA`,
-    description: `Certified mold testing, inspection, and remediation in ${city.name}, ${city.region}. Same-day appointments. AIHA-accredited lab. IICRC remediation. Call ${business.phoneDisplay}.`,
+    description: `Certified mold testing, inspection, and remediation in ${city.name}, ${city.region}, ${city.county} County. Same-day appointments. AIHA-accredited lab. IICRC S520 remediation. Serving ZIPs ${city.zips.join(', ')}. Call ${business.phoneDisplay}.`,
     path: `/${slug}`,
     image: '/images/og/city.png',
+    keywords: [
+      `mold inspection ${city.name}`,
+      `mold testing ${city.name}`,
+      `mold remediation ${city.name}`,
+      `black mold removal ${city.name}`,
+      `mold inspector near me ${city.name}`,
+      `${city.name} air quality testing`,
+      `emergency mold ${city.name}`,
+      `IICRC mold remediation ${city.name}`,
+      ...city.zips.map((z) => `mold inspection ${z}`),
+    ],
   });
 }
 
@@ -80,12 +100,33 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            localBusinessJsonLd({ areaServed: [city.name, city.region] }),
+            localBusinessJsonLd({ areaServed: [city.name, city.region, `${city.county} County`] }),
+            serviceJsonLd({
+              name: `Mold Testing, Inspection & Remediation in ${city.name}, CA`,
+              description: `Certified mold inspection, AIHA-accredited testing, and IICRC S520-compliant remediation in ${city.name}, ${city.region}.`,
+              url: `${SITE_URL}/${city.slug}`,
+              areaServed: city.name,
+              priceRange: '$295 - $30,000',
+              category: 'Mold Remediation',
+            }),
             breadcrumbJsonLd([
               { name: 'Home', url: '/' },
+              { name: 'Service Area', url: '/service-area' },
               { name: city.name, url: `/${city.slug}` },
             ]),
             faqJsonLd(cityFaqs),
+            webPageJsonLd({
+              url: `/${city.slug}`,
+              name: `Mold Testing, Inspection & Remediation in ${city.name}, CA`,
+              description: `Certified mold inspection and remediation in ${city.name}, ${city.region}. Same-day appointments, AIHA-accredited lab, IICRC S520 remediation.`,
+            }),
+            articleJsonLd({
+              url: `/${city.slug}`,
+              headline: `Mold Testing, Inspection & Remediation in ${city.name}, California`,
+              description: `Local mold inspection, testing, and IICRC-certified remediation across ${city.name}, ${city.region} (ZIPs ${city.zips.join(', ')}).`,
+              image: '/images/og/city.png',
+              wordCount: content.wordCount,
+            }),
           ]),
         }}
       />

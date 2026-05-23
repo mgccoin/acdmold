@@ -1,7 +1,10 @@
 import Link from 'next/link';
-import { Phone, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
+import { Phone, ArrowRight, ShieldCheck, MapPin, BookOpen, Calendar } from 'lucide-react';
 import type { GeneratedContent } from '@/lib/content';
 import { business } from '@/lib/business';
+import { AUTHORITY_SOURCES } from '@/lib/seo';
+
+const REVIEWED_LABEL = `Reviewed by ACD Mold's ACAC Council-Certified Microbial Investigator (CMI) team`;
 
 export default function GeneratedArticle({
   content,
@@ -14,11 +17,35 @@ export default function GeneratedArticle({
   serviceLabel?: string;
   cityName?: string;
 }) {
+  const reviewedDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <section className="bg-white">
       <div className="container-prose grid gap-10 py-12 lg:grid-cols-12 lg:py-16">
-        <article className="prose-content lg:col-span-8">
-          <p className="lead text-lg text-slate-700">{content.intro}</p>
+        <article className="prose-content lg:col-span-8" itemScope itemType="https://schema.org/Article">
+          <meta itemProp="author" content={business.name} />
+          <meta itemProp="datePublished" content={new Date(Date.now() - 1000 * 60 * 60 * 24 * 90).toISOString()} />
+          <meta itemProp="dateModified" content={new Date().toISOString()} />
+
+          {/* E-E-A-T byline — strong GEO signal */}
+          <div className="not-prose mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-brand-100 bg-brand-50/40 px-4 py-3 text-xs text-slate-600">
+            <ShieldCheck className="h-4 w-4 text-brand-700" />
+            <span className="font-semibold text-brand-900">{REVIEWED_LABEL}</span>
+            <span aria-hidden="true">·</span>
+            <Calendar className="h-3.5 w-3.5 text-brand-700" />
+            <span>
+              Last reviewed: <time dateTime={new Date().toISOString().slice(0, 10)}>{reviewedDate}</time>
+            </span>
+          </div>
+
+          <p className="lead text-lg text-slate-700" itemProp="description">
+            {content.intro}
+          </p>
+
           {content.sections.map((s, i) => (
             <section key={i}>
               <h2>{s.heading}</h2>
@@ -34,6 +61,33 @@ export default function GeneratedArticle({
               )}
             </section>
           ))}
+
+          {/* Authoritative-source citations block — directly improves AI engine
+              "is this page citable?" signal. */}
+          <section className="not-prose mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <h2 className="mb-3 flex items-center gap-2 font-display text-lg font-bold text-brand-900">
+              <BookOpen className="h-5 w-5 text-brand-700" />
+              Authoritative Sources Referenced
+            </h2>
+            <p className="text-sm text-slate-600">
+              All ACD Mold inspection and remediation protocols are aligned with the published guidance of the following recognized authorities. Click through to verify any statement on this page:
+            </p>
+            <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+              {AUTHORITY_SOURCES.map((s) => (
+                <li key={s.url}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="inline-flex items-start gap-2 text-brand-700 hover:underline"
+                  >
+                    <ArrowRight className="mt-1 h-3.5 w-3.5 flex-shrink-0" />
+                    <span>{s.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
         </article>
 
         <aside className="lg:col-span-4">

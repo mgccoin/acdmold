@@ -2,12 +2,24 @@ import Hero from '@/components/Hero';
 import FAQ from '@/components/FAQ';
 import CTASection from '@/components/CTASection';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { buildMetadata, breadcrumbJsonLd, faqJsonLd } from '@/lib/seo';
+import { buildMetadata, breadcrumbJsonLd, faqJsonLd, webPageJsonLd, articleJsonLd } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'Mold Inspection & Remediation FAQs',
-  description: 'Answers to the most common mold testing, inspection, and remediation questions in California. From cost to insurance to health risks — answered by certified ACD Mold professionals.',
+  title: 'Mold Inspection & Remediation FAQs — Los Angeles County, CA',
+  description:
+    'Answers to the most common mold testing, inspection, and remediation questions across Los Angeles County and Ventura County. Costs, insurance, health risks, IICRC S520, AIHA labs — answered by certified ACD Mold professionals.',
   path: '/faq',
+  keywords: [
+    'mold inspection FAQ Los Angeles',
+    'mold remediation cost California',
+    'black mold danger',
+    'mold homeowners insurance California',
+    'IICRC S520 explained',
+    'AIHA accredited mold lab',
+    'how long does mold remediation take',
+    'post-remediation clearance testing',
+    'Stachybotrys chartarum FAQ',
+  ],
 });
 
 const faqs = [
@@ -26,6 +38,11 @@ const faqs = [
   { q: 'How long are lab results?', a: 'Standard turnaround at AIHA-accredited labs is 3–5 business days. Rush 24-hour processing is available for an additional fee, useful for real estate transactions.' },
   { q: 'What is post-remediation clearance?', a: 'An independent third-party verification (visual + air sampling) that the remediation was successful. Most insurance carriers and informed property owners require it before final payment.' },
   { q: 'Can mold come back after remediation?', a: 'Properly remediated mold should not return as long as the underlying moisture source has been corrected. We document the source and recommend the necessary repairs in every report.' },
+  { q: 'Do you serve all of Los Angeles County?', a: 'Yes. ACD Mold serves every incorporated city and unincorporated community in Los Angeles County — from Beverly Hills, Santa Monica, and the Westside to the San Fernando Valley, San Gabriel Valley, South Bay, Gateway Cities, Harbor Area, Santa Clarita Valley, and Antelope Valley. We also serve Ventura County including Thousand Oaks, Camarillo, Oxnard, Ventura, and Simi Valley.' },
+  { q: 'How is mold remediation regulated in California?', a: 'California does not have a single state-issued mold contractor license. Remediation is performed under a CSLB general-contractor or specialty license, governed procedurally by the IICRC S520 Standard, with worker safety governed by Cal/OSHA Title 8 Section 5144. The California Department of Public Health publishes the consumer-facing Indoor Air Quality guidance most professionals follow.' },
+  { q: 'What does AIHA-accredited actually mean?', a: 'AIHA-LAP (American Industrial Hygiene Association Laboratory Accreditation Programs) accreditation means an independent microbiology laboratory has been audited and certified to meet rigorous quality standards for mold sample analysis. AIHA accreditation is the benchmark insurance carriers, courts, and the IICRC S520 Standard recognize for defensible results.' },
+  { q: 'Why do you operate out of Encino specifically?', a: 'Our Encino headquarters at 17209 Ventura Blvd is centrally located in Los Angeles County — within a 30-minute drive of Beverly Hills, Santa Monica, the San Fernando Valley, Burbank, Glendale, and Pasadena, and within a 60-minute drive of Long Beach, the South Bay, Santa Clarita, Thousand Oaks, and Ventura. This central location is why we can offer same-day appointments across our entire service area.' },
+  { q: 'What is the difference between Conditions 1, 2, and 3 in mold remediation?', a: 'These are the IICRC S520 Standard classifications. Condition 1 is a normal fungal ecology (the baseline goal). Condition 2 contains settled spores from a nearby Condition 3 source. Condition 3 is an area of actual visible or suspected mold growth requiring remediation. The goal of every remediation project is to return Condition 2 and 3 spaces to Condition 1, verified by post-remediation clearance testing.' },
 ];
 
 export default function FaqPage() {
@@ -47,6 +64,20 @@ export default function FaqPage() {
           __html: JSON.stringify([
             faqJsonLd(faqs),
             breadcrumbJsonLd([{ name: 'Home', url: '/' }, { name: 'FAQ', url: '/faq' }]),
+            webPageJsonLd({
+              url: '/faq',
+              name: 'Mold Inspection & Remediation FAQs — Los Angeles County, CA',
+              description:
+                'Common questions about mold testing, inspection, and remediation in Los Angeles County and Ventura County. Costs, insurance, health, IICRC standards, AIHA labs.',
+              speakableSelectors: ['h2', '.faq-question', '.faq-answer'],
+            }),
+            articleJsonLd({
+              url: '/faq',
+              headline: 'Mold Inspection & Remediation FAQs in Los Angeles County, CA',
+              description:
+                'Plain-English answers to the most common mold testing, inspection, and remediation questions across Los Angeles and Ventura County.',
+              wordCount: 2200,
+            }),
           ]),
         }}
       />
