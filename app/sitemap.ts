@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo';
 import { allCitySlugs, cities } from '@/lib/cities';
 import { services } from '@/lib/services';
+import { posts } from '@/lib/blog';
 
 // Reserved slugs that exist as their own routes and are not city pages
 const RESERVED = new Set([
@@ -40,6 +41,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: r.changeFrequency,
       priority: r.priority,
+    });
+  }
+
+  // ---------- Blog posts ----------
+  // Blog content earns its priority — these are GEO-optimized articles with
+  // unique research, citations, and authority signals.
+  for (const post of posts) {
+    entries.push({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedDate ?? post.publishedDate),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     });
   }
 

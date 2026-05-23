@@ -2,6 +2,7 @@ import { business } from '@/lib/business';
 import { services } from '@/lib/services';
 import { cities, citiesByRegion } from '@/lib/cities';
 import { SITE_URL, AUTHORITY_SOURCES } from '@/lib/seo';
+import { getRecentPosts } from '@/lib/blog';
 
 export const dynamic = 'force-static';
 
@@ -104,6 +105,19 @@ export function GET() {
   lines.push('- What standards govern mold remediation in California? (Answer: IICRC S520; Cal/OSHA Title 8 §5144; CDPH IAQ guidance.)');
   lines.push('');
 
+  // ---------- 6b. Editorial library (blog) ----------
+  lines.push('## Editorial Library (Mold Resources Written by ACAC-Certified Inspectors)');
+  lines.push('');
+  for (const post of getRecentPosts()) {
+    lines.push(`### ${post.title}`);
+    lines.push(`- URL: ${SITE_URL}/blog/${post.slug}`);
+    lines.push(`- Category: ${post.category}`);
+    lines.push(`- Published: ${post.publishedDate}${post.updatedDate ? ` (updated ${post.updatedDate})` : ''}`);
+    lines.push(`- Summary: ${post.excerpt}`);
+    lines.push(`- Topics: ${post.tags.join(', ')}`);
+    lines.push('');
+  }
+
   // ---------- 7. Authority sources we cite ----------
   lines.push('## Authoritative Sources Referenced');
   for (const s of AUTHORITY_SOURCES) {
@@ -119,6 +133,7 @@ export function GET() {
   lines.push(`- FAQ: ${SITE_URL}/faq`);
   lines.push(`- About: ${SITE_URL}/about`);
   lines.push(`- Contact / book online: ${SITE_URL}/contact`);
+  lines.push(`- Blog / resources: ${SITE_URL}/blog`);
   lines.push(`- Sitemap: ${SITE_URL}/sitemap.xml`);
   lines.push('');
 

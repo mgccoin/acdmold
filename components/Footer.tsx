@@ -3,9 +3,11 @@ import { Phone, Mail, MapPin, Clock, ShieldCheck, Award } from 'lucide-react';
 import { business } from '@/lib/business';
 import { services } from '@/lib/services';
 import { citiesByRegion } from '@/lib/cities';
+import { getRecentPosts } from '@/lib/blog';
 
 export default function Footer() {
   const regions = Object.keys(citiesByRegion).sort();
+  const recentPosts = getRecentPosts(4);
 
   return (
     <footer className="border-t border-slate-200 bg-brand-950 text-slate-200">
@@ -87,7 +89,32 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-4 border-t border-brand-800 pt-8 text-xs text-slate-400 sm:grid-cols-2">
+        <div className="mt-12 grid gap-8 border-t border-brand-800 pt-10 lg:grid-cols-12">
+          <div className="lg:col-span-12">
+            <div className="font-display text-sm font-semibold uppercase tracking-wider text-accent-300">
+              Latest Resources
+            </div>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {recentPosts.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={`/blog/${p.slug}`}
+                    className="group block rounded-lg border border-brand-800 bg-brand-900/40 p-3 transition hover:border-accent-400 hover:bg-brand-900/70"
+                  >
+                    <div className="text-[10px] font-semibold uppercase tracking-wider text-accent-300">
+                      {p.category}
+                    </div>
+                    <div className="mt-1 text-sm font-semibold leading-snug text-slate-200 group-hover:text-accent-200">
+                      {p.title}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-4 border-t border-brand-800 pt-8 text-xs text-slate-400 sm:grid-cols-2">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             {business.certifications.map((c) => (
               <span key={c} className="flex items-center gap-1.5">
