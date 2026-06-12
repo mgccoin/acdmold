@@ -18,8 +18,9 @@ import { business } from '@/lib/business';
 import { cities } from '@/lib/cities';
 
 export const metadata = buildMetadata({
-  // Brand is appended by the layout title template — don't repeat it here.
-  title: 'Mold Testing, Inspection & Remediation in Los Angeles County, CA',
+  // The layout title template does NOT apply to the root page (same segment),
+  // so the brand must be included explicitly here.
+  title: `Mold Testing, Inspection & Remediation in Los Angeles County, CA | ${business.name}`,
   description: `${business.shortDescription} Serving ${cities.length}+ cities across Los Angeles and Ventura County. Same-day appointments, AIHA-accredited lab results, IICRC-certified crews. Call ${business.phoneDisplay}.`,
   path: '/',
   image: '/images/og/home.png',
