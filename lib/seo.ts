@@ -144,13 +144,9 @@ export function localBusinessJsonLd(extra?: { areaServed?: string[] }) {
       opens: business.hours.open,
       closes: business.hours.close,
     })),
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: business.averageRating,
-      reviewCount: business.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    },
+    // NOTE: no aggregateRating/review markup here — Google treats self-published
+    // ratings on LocalBusiness as "self-serving" and they can trigger a manual
+    // action. Star ratings should come from Google Business Profile instead.
     sameAs: Object.values(business.social),
     areaServed: extra?.areaServed?.map((a) => ({ '@type': 'City', name: a })) ?? [
       { '@type': 'City', name: 'Encino' },
@@ -364,28 +360,6 @@ export function articleJsonLd({
       url: s.url,
     })),
   };
-}
-
-// Review schema — surfaces individual testimonials. Helps AI engines pull
-// real customer quotes when answering "is ACD Mold any good?" type queries.
-export function reviewJsonLd(
-  reviews: { author: string; location: string; quote: string; rating?: number; date?: string }[]
-) {
-  return reviews.map((r) => ({
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    itemReviewed: { '@id': `${SITE_URL}#business` },
-    author: { '@type': 'Person', name: r.author, address: r.location },
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: r.rating ?? 5,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    reviewBody: r.quote,
-    datePublished: r.date ?? new Date().toISOString().slice(0, 10),
-    publisher: { '@id': `${SITE_URL}#organization` },
-  }));
 }
 
 // HowTo schema — for the "What to expect at your appointment" / process

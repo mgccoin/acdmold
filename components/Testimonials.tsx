@@ -1,5 +1,4 @@
 import { Star, Quote } from 'lucide-react';
-import { reviewJsonLd } from '@/lib/seo';
 
 const testimonials = [
   {
@@ -71,22 +70,6 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            reviewJsonLd(
-              testimonials.map((t) => ({
-                author: t.name,
-                location: t.location,
-                quote: t.quote,
-                rating: 5,
-                date: t.date,
-              }))
-            )
-          ),
-        }}
-      />
     </section>
   );
 }

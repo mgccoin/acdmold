@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ service: 
   const s = getServiceBySlug(slug);
   if (!s) return {};
   return buildMetadata({
-    title: `${s.name} | ${s.tagline}`,
+    title: `${s.name} in Los Angeles & Ventura County`,
     description: s.metaDescription,
     path: `/services/${slug}`,
     image: s.heroImage,

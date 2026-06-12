@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCallButton from '@/components/StickyCallButton';
 import TopBar from '@/components/TopBar';
+import Analytics from '@/components/Analytics';
 import {
   localBusinessJsonLd,
   organizationJsonLd,
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <Footer />
         <StickyCallButton />
+        <Analytics />
 
         <script
           type="application/ld+json"
