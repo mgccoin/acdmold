@@ -68,7 +68,7 @@ export async function submitLead(
   if (isRateLimited(ip)) {
     return {
       ok: false,
-      message: 'Too many submissions from your network in the last few minutes. Please call us at (424) 352-7034 if this is urgent.',
+      message: 'Too many submissions from your network in the last few minutes. Please call us at (424) 352-7039 if this is urgent.',
     };
   }
 
@@ -95,7 +95,7 @@ export async function submitLead(
     console.error('[submitLead] GOOGLE_SHEETS_WEBHOOK_URL is not configured.');
     return {
       ok: false,
-      message: 'Form is temporarily unavailable. Please call us at (424) 352-7034.',
+      message: 'Form is temporarily unavailable. Please call us at (424) 352-7039.',
     };
   }
 
@@ -131,14 +131,14 @@ export async function submitLead(
       console.error('[submitLead] Webhook responded non-OK', res.status, body);
       return {
         ok: false,
-        message: 'We could not save your message. Please call us at (424) 352-7034.',
+        message: 'We could not save your message. Please call us at (424) 352-7039.',
       };
     }
   } catch (err) {
     console.error('[submitLead] Webhook fetch failed', err);
     return {
       ok: false,
-      message: 'We could not reach our intake system. Please call us at (424) 352-7034 or try again in a moment.',
+      message: 'We could not reach our intake system. Please call us at (424) 352-7039 or try again in a moment.',
     };
   }
 

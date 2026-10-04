@@ -572,7 +572,7 @@ export const services: Service[] = [
     heroImage: '/images/services/emergency-mold-hero.png',
     cardImage: '/images/services/emergency-mold-card.png',
     metaDescription:
-      '24/7 emergency mold services. Same-day inspection, testing, and remediation for floods, sewage backups, and urgent contamination. Call (424) 352-7034.',
+      '24/7 emergency mold services. Same-day inspection, testing, and remediation for floods, sewage backups, and urgent contamination. Call (424) 352-7039.',
     whyMatters: [
       'Mold begins to grow within 24–48 hours of water intrusion',
       'Same-day response can prevent thousands of dollars in additional damage',

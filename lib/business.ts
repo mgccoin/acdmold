@@ -2,9 +2,9 @@ export const business = {
   name: 'ACD Mold',
   legalName: 'ACD Mold Inspection & Remediation',
   url: 'https://acdmold.com',
-  phone: '+14243527034',
-  phoneDisplay: '(424) 352-7034',
-  phoneHref: 'tel:+14243527034',
+  phone: '+14243527039',
+  phoneDisplay: '(424) 352-7039',
+  phoneHref: 'tel:+14243527039',
   email: 'info@acdmold.com',
   address: {
     street: '17209 Ventura Blvd',
