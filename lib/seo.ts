@@ -42,8 +42,11 @@ export function buildMetadata({
     description,
     metadataBase: new URL(SITE_URL),
     alternates: { canonical: url },
+    // `noindex, follow`: keep thin/near-duplicate pages out of the index while
+    // still letting Google follow their internal links (so link equity reaches
+    // the indexed pages). Used for the city×sub-service tier.
     robots: noindex
-      ? { index: false, follow: false }
+      ? { index: false, follow: true, googleBot: { index: false, follow: true } }
       : {
           index: true,
           follow: true,

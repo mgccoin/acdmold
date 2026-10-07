@@ -61,12 +61,11 @@ export async function generateMetadata({
     description: `${sub.shortDescription} Serving ${city.name}, ${city.region}, ${city.county} County (ZIPs ${city.zips.join(', ')}). Typical pricing: ${sub.pricing}.`,
     path: `/${citySlug}/${serviceSlug}/${subSlug}`,
     image: service.heroImage,
-    keywords: [
-      `${sub.name.toLowerCase()} ${city.name}`,
-      `${sub.name.toLowerCase()} near me ${city.name}`,
-      `${city.name} ${sub.name.toLowerCase()} cost`,
-      `${sub.name.toLowerCase()} ${city.county} County`,
-    ],
+    // noindex,follow: this city×sub-service tier (~4,100 near-duplicate pages)
+    // is kept out of the index to avoid scaled/thin-content risk on a new
+    // domain. The pages stay live and linked; the indexable set is the city,
+    // city×service, and service/sub-service hub pages. Revisit per GSC data.
+    noindex: true,
   });
 }
 

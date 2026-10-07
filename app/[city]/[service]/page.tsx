@@ -18,6 +18,7 @@ import {
   SITE_URL,
 } from '@/lib/seo';
 import { generateCityServiceContent } from '@/lib/content';
+import { getCuratedContent } from '@/lib/curated';
 
 const RESERVED = new Set([
   'services', 'service-area', 'about', 'contact', 'faq', 'blog', 'privacy',
@@ -41,9 +42,12 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   const city = getCityBySlug(citySlug);
   const service = getServiceBySlug(serviceSlug);
   if (!city || !service) return {};
+  const curated = getCuratedContent(citySlug, serviceSlug);
   return buildMetadata({
-    title: `${service.name} in ${city.name}, CA`,
-    description: `${service.name} in ${city.name}, ${city.region}, ${city.county} County. ${service.shortDescription} Serving ZIPs ${city.zips.join(', ')}.`,
+    title: curated?.title ?? `${service.name} in ${city.name}, CA`,
+    description:
+      curated?.metaDescription ??
+      `${service.name} in ${city.name}, ${city.region}, ${city.county} County. ${service.shortDescription} Serving ZIPs ${city.zips.join(', ')}.`,
     path: `/${citySlug}/${serviceSlug}`,
     image: service.heroImage,
     keywords: [
@@ -64,7 +68,9 @@ export default async function CityServicePage({ params }: { params: Promise<{ ci
   const service = getServiceBySlug(serviceSlug);
   if (!city || !service) notFound();
 
-  const content = generateCityServiceContent(city, service);
+  // Prefer hand-built, accuracy-reviewed content on priority routes; fall back
+  // to the programmatic generator everywhere else.
+  const content = getCuratedContent(city.slug, service.slug) ?? generateCityServiceContent(city, service);
 
   const related = [
     ...service.subServices.slice(0, 4).map((ss) => ({

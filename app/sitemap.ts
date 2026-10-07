@@ -82,10 +82,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // ---------- City pages, city×service, AND every city×sub-service combo ----------
-  // Submitting every city×sub-service URL — even those rendered on-demand —
-  // is a major GEO signal: AI engines and Google build their understanding of
-  // the site's local coverage from the full URL inventory in the sitemap.
+  // ---------- City pages + city×service ----------
+  // We submit the indexable set only: city hubs and city×service pages. The
+  // ~4,100 city×sub-service combinations are intentionally NOT listed here —
+  // they are noindex,follow (near-duplicate thin tier) and listing noindexed
+  // URLs in the sitemap sends a conflicting signal and wastes crawl budget on
+  // a new domain. They remain reachable via on-page links for users.
   for (const citySlug of allCitySlugs) {
     if (RESERVED.has(citySlug)) continue;
 
@@ -103,15 +105,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: 'monthly',
         priority: 0.75,
       });
-
-      for (const ss of s.subServices) {
-        entries.push({
-          url: `${SITE_URL}/${citySlug}/${s.slug}/${ss.slug}`,
-          lastModified: now,
-          changeFrequency: 'monthly',
-          priority: 0.6,
-        });
-      }
     }
   }
 
