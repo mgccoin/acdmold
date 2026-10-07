@@ -139,7 +139,7 @@ export const posts: BlogPost[] = [
             ['Swab sample', '$85 – $125 each', '3–5 business days', 'Same as tape lift, for irregular surfaces'],
             ['Bulk sample (drywall, insulation)', '$125 – $175 each', '3–5 business days', 'Identifying contamination depth before remediation'],
             ['Rush 24-hour processing', '+$95 – $145 surcharge', '24 hours', 'Real-estate closings, insurance deadlines, court'],
-            ['ERMI / HERTSMI-2 (DNA panel)', '$295 – $395 each', '7–10 days', 'Mold-illness diagnostics under physician care'],
+            ['ERMI / HERTSMI-2 (DNA panel)', '$295 – $395 each', '7–10 days', 'Physician-directed dust sampling only (EPA calls ERMI a research tool, not a home health-risk test)'],
           ],
         },
         callout: {
@@ -249,7 +249,7 @@ export const posts: BlogPost[] = [
       },
       {
         q: 'How much does post-remediation clearance testing cost?',
-        a: 'Independent third-party post-remediation verification (visual inspection + air sampling) costs $395 – $695 in Los Angeles County. This is the IICRC S520-recognized verification that the remediation was successful and the area is safe to reoccupy. Most reputable remediation contracts and insurance carriers require it.',
+        a: 'Independent third-party post-remediation verification (visual inspection + air sampling) costs $395 – $695 in Los Angeles County. This is the IICRC S520-recognized check that the work area has been returned toward a normal fungal ecology — spore counts at or below the outdoor baseline with no visible growth — before reoccupancy. Most reputable remediation contracts and insurance carriers require it.',
       },
     ],
     relatedCitySlugs: [
@@ -499,7 +499,7 @@ export const posts: BlogPost[] = [
         id: 'when-to-remediate',
         heading: 'When professional remediation is actually required',
         paragraphs: [
-          'The California Department of Public Health and the EPA both publish guidance that visible mold growth larger than approximately 10 contiguous square feet should be remediated by trained professionals using containment, HEPA filtration, and negative air pressure. This applies regardless of species — Stachybotrys or otherwise.',
+          'The U.S. EPA advises that mold patches under about 10 square feet can often be cleaned by a homeowner taking proper precautions, while larger areas or water-damage situations generally warrant professional help. The California Department of Public Health does not use a size threshold at all — it recommends removing all visible mold and fixing the moisture source promptly. Either way, cleanup does not depend on the species.',
           'Below 10 square feet, on non-porous materials, a healthy adult with appropriate PPE (N95 respirator minimum, gloves, eye protection) can usually clean the area with detergent and water per EPA "Mold Remediation in Schools and Commercial Buildings" guidance. The catch: this only works on non-porous materials. Drywall, insulation, wallpaper, carpet, and ceiling tile that have visible growth need to be removed and replaced, not cleaned.',
         ],
         callout: {
@@ -759,7 +759,7 @@ export const posts: BlogPost[] = [
           items: [
             'ACAC CMI or CMC — Council-Certified Microbial Investigator or Council-Certified Microbial Consultant. Issued by the American Council for Accredited Certification, requires exam + ongoing CE. Verify at acac.org.',
             'IICRC AMRT — Applied Microbial Remediation Technician. Issued by the Institute of Inspection, Cleaning and Restoration Certification. Required for any remediation work under IICRC S520. Verify at iicrc.org.',
-            'CSLB License — California State Licensing Board contractor license (typically B General, or specialty C-32 Parking & Highway Improvement / C-22 Asbestos Abatement for remediation crews handling demolition). Verify at cslb.ca.gov.',
+            'CSLB contractor license — mold remediation involving construction or demolition must be performed under a CSLB license, commonly B (General Building) or C-61/D-64 (Limited Specialty, Non-specialized). There is no mold-specific CSLB classification. Verify any license at cslb.ca.gov.',
             'AIHA-LAP Laboratory partnership — confirms the inspector\'s analytical lab is American Industrial Hygiene Association Laboratory Accreditation Programs accredited. Verify at aihaaccreditedlabs.org.',
             'Comprehensive General Liability + Workers Compensation Insurance — minimum $1M GL is industry standard for residential, $2M for commercial. Ask for the COI (Certificate of Insurance) BEFORE booking.',
           ],
@@ -767,7 +767,7 @@ export const posts: BlogPost[] = [
         callout: {
           type: 'info',
           title: 'Why no California state license?',
-          text: 'California considered mold-contractor licensing legislation multiple times (SB 732, SB 916) but never passed. The 2018 ACAC-recognized certifications and IICRC standards are the de facto industry baseline. Other states (Texas, Florida, New York) DO have state licensing — California does not.',
+          text: 'California’s 2001 Toxic Mold Protection Act (SB 732) did pass and was signed into law, but it directed the Department of Public Health to study permissible exposure limits — and CDPH concluded in 2005 that science-based limits could not be established. As a result California still has no state mold-contractor license or exposure standard; ACAC-recognized certifications and the IICRC standards are the de facto industry baseline. Some states (e.g., Texas, Florida) do license mold professionals — California does not.',
         },
       },
       {

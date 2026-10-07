@@ -52,33 +52,19 @@ const CLIMATE_NOTES: Record<City['climate'], string[]> = {
   ],
 };
 
-const KEYWORD_POOL = [
-  'mold testing',
-  'mold inspection',
-  'mold remediation',
-  'black mold removal',
-  'air quality testing',
-  'certified mold inspector',
-  'IICRC mold remediation',
-  'AIHA-accredited mold lab',
-  'mold inspection near me',
-  'same-day mold testing',
-  'water-damage mold cleanup',
-  'attic mold removal',
-  'crawl space mold',
-  'bathroom mold remediation',
-  'HVAC mold inspection',
-];
-
+// Keep to the allergy/respiratory reactions that EPA/CDC and the 2004 IOM
+// review associate with damp/moldy indoor environments in sensitized people.
+// Avoid systemic/neuro claims ("brain fog", etc.) the authorities label
+// unproven — the site's own blog #3 makes this same point.
 const HEALTH_SYMPTOMS = [
   'persistent cough or congestion',
-  'unexplained sinus headaches',
+  'unexplained sinus or nasal irritation',
   'itchy or watery eyes',
-  'asthma flare-ups',
-  'fatigue and brain fog',
-  'skin rashes or hives',
+  'asthma flare-ups in people with asthma',
+  'throat irritation',
+  'wheezing',
   'sneezing fits when entering the home',
-  'shortness of breath',
+  'shortness of breath in sensitive individuals',
 ];
 
 const COMMON_TRIGGERS = [
@@ -124,18 +110,19 @@ const CITED_STATS = [
   'The Centers for Disease Control and Prevention (CDC) confirms that mold exposure can trigger asthma attacks in sensitized individuals and may cause upper respiratory symptoms in otherwise healthy people (CDC, "Basic Facts About Mold and Dampness").',
   'A landmark Institute of Medicine review (2004) found "sufficient evidence" linking indoor mold exposure to upper respiratory symptoms, cough, wheeze, and asthma symptoms in sensitized individuals.',
   'The American Industrial Hygiene Association (AIHA) maintains the AIHA-LAP accreditation that the IICRC S520 Standard and most major insurance carriers recognize as the benchmark for defensible mold sample analysis.',
-  'The IICRC S520 Standard requires that all mold remediation establish containment, negative air pressure, and a post-remediation verification protocol before a Condition 3 (active growth) space can be reoccupied.',
-  'California Department of Public Health guidance recommends that visible mold growth larger than 10 contiguous square feet be remediated by trained professionals using containment and HEPA filtration.',
+  'The IICRC S520 Standard directs remediators to control cross-contamination using appropriately scaled containment and engineering controls (such as negative air pressure and HEPA filtration) and to verify that a work area has been returned to a normal fungal ecology before reoccupancy.',
+  'The U.S. EPA advises that mold patches under about 10 square feet can often be cleaned by a homeowner taking proper precautions, while larger areas or water-damage situations generally warrant professional help (EPA, "A Brief Guide to Mold, Moisture and Your Home").',
+  'The California Department of Public Health recommends promptly removing all visible mold and fixing the underlying moisture source, and does not endorse a minimum size threshold or routine mold measurement (CDPH, "Statement on Building Dampness, Mold, and Health," 2017).',
 ];
 
 const TRUST_PROOF = [
-  `over ${business.projectsCompleted.toLocaleString()} completed projects across Southern California`,
-  `a verified ${business.averageRating}-star rating across ${business.reviewCount}+ public reviews`,
-  `${business.yearsInBusiness}+ years of focused mold inspection and remediation experience`,
+  `over ${business.projectsCompleted.toLocaleString()} completed mold projects across Southern California`,
+  `a ${business.averageRating}-star average rating from ${business.reviewCount}+ reviews`,
+  `${business.yearsInBusiness}+ years of focused mold inspection and testing experience`,
   'AIHA-accredited third-party laboratory partners on every test',
-  'full $2M general liability and workers compensation insurance',
-  'IICRC-certified inspectors and remediation technicians on every crew',
-  'fully bonded and CSLB-licensed for remediation work in California',
+  'certified inspectors plus licensed, insured remediation partners we coordinate and independently verify',
+  'ACAC- and IICRC-trained inspectors using calibrated moisture and thermal instruments',
+  'independent post-remediation clearance so cleanup is checked by someone who did not perform it',
 ];
 
 function climateLine(city: City, rng: () => number): string {
@@ -165,7 +152,7 @@ export function generateCityServiceContent(
     ? `${subService.name} in ${city.name}, CA | ACD Mold`
     : `${service.name} in ${city.name}, CA | ACD Mold`;
 
-  const metaDescription = `${focus.shortDescription} Serving ${city.name} and ${city.region}. Same-day appointments, AIHA-accredited lab results, IICRC-certified crews. Call ${business.phoneDisplay}.`;
+  const metaDescription = `${focus.shortDescription} Serving ${city.name} and ${city.region}. Same-day appointments and AIHA-accredited lab results; remediation coordinated through licensed partners. Call ${business.phoneDisplay}.`;
 
   const h1 = subService
     ? `${subService.name} in ${city.name}, California`
@@ -178,7 +165,6 @@ export function generateCityServiceContent(
   const toolsUsed = pickN(rng, TOOLS, 4);
   const standards = pickN(rng, STANDARDS, 3);
   const proofs = pickN(rng, TRUST_PROOF, 4);
-  const keywords = pickN(rng, KEYWORD_POOL, 6);
   const citedStats = pickN(rng, CITED_STATS, 2);
 
   const intro = [
@@ -206,7 +192,7 @@ export function generateCityServiceContent(
     paragraphs: [
       `${subService ? subService.longDescription : service.longDescription}`,
       `Every ${focusName.toLowerCase()} appointment in ${city.name} begins with a written scope of work that you approve before any sampling, demolition, or invoice begins. We use ${toolsUsed[0]} and ${toolsUsed[1]}, and on more complex projects we add ${toolsUsed[2]} and ${toolsUsed[3]} so nothing important is missed.`,
-      `Our work follows ${standards[0]}, ${standards[1]}, and ${standards[2]}. Following recognized standards is not optional in California — it is what separates a defensible report from a piece of paper a court or insurance carrier will throw out.`,
+      `Our work follows ${standards[0]}, ${standards[1]}, and ${standards[2]}. Following recognized standards is what produces a well-documented report that insurance carriers and other professionals can rely on.`,
     ],
     list: subService?.benefits ?? service.whyMatters.slice(0, 5),
   });
@@ -248,9 +234,9 @@ export function generateCityServiceContent(
   sections.push({
     heading: `Why ${city.name} Property Owners Choose ACD Mold`,
     paragraphs: [
-      `ACD Mold is headquartered at ${business.address.full}, only a short drive from every ${city.name} ZIP code. Local presence matters because it means faster response times, real accountability, and a team that has worked on hundreds of properties in your specific neighborhood.`,
-      `Our credentials include ${proofs[2]}, ${proofs[3]}, and ongoing continuing-education training for every inspector and remediation technician on our crew. We invest in our people because the difference between a good inspection and a great one is the experience and judgment of the person holding the meter.`,
-      `Most importantly, ACD Mold separates the inspection role from the remediation role wherever possible. When the same company that finds mold also profits from removing it, the temptation to over-diagnose is real. We are transparent about which scope of work we recommend and why, and we are happy to be the third-party clearance inspector on remediation work other contractors perform.`,
+      `ACD Mold is a service-area business headquartered at ${business.address.full}. We do not keep a storefront in ${city.name} — our certified inspectors travel to you — but working ${city.region} properties regularly means we know the construction eras and moisture patterns common to the area.`,
+      `Our credentials include ${proofs[2]}, ${proofs[3]}, and ongoing continuing-education training for every inspector. We invest in our people because the difference between a good inspection and a great one is the experience and judgment of the person holding the meter.`,
+      `Most importantly, ACD Mold's own work is inspection and testing — we do not perform the physical removal ourselves. When remediation is needed we coordinate licensed, insured remediation partners and then verify their work with independent clearance testing. Because our fee does not depend on selling you a removal job, you get a straight assessment of what actually needs to happen — and you are always free to use your own remediation contractor.`,
     ],
     list: proofs,
   });
@@ -270,8 +256,8 @@ export function generateCityServiceContent(
   sections.push({
     heading: `Service Area: ${city.name} and Beyond`,
     paragraphs: [
-      `ACD Mold provides ${focusName.toLowerCase()} throughout ${city.name} (ZIP codes ${city.zips.join(', ')}) and across ${nearbyOptions}. Our service radius from our Encino headquarters extends ${business.serviceRadiusMiles}+ miles in every direction, with no travel surcharges for properties inside that radius.`,
-      `Frequently searched ${focusName.toLowerCase()} keywords for ${city.name} include ${keywords.join(', ')} — and we appear at the top of those searches because we genuinely serve every ZIP code listed, not because we are running a fake-address Google Maps spam scheme. When you call ${business.phoneDisplay}, the person who answers can tell you the names of the streets in your neighborhood.`,
+      `ACD Mold provides ${focusName.toLowerCase()} throughout ${city.name} (ZIP codes ${city.zips.join(', ')}) and across ${nearbyOptions}. We travel to ${city.name} from our Encino base and will confirm scheduling and any travel considerations when you book.`,
+      `When you call ${business.phoneDisplay}, you reach our team directly — we can talk through what you are seeing, whether an inspection or sampling is the right next step, and what it will cost before anyone is dispatched.`,
     ],
   });
 
@@ -280,7 +266,7 @@ export function generateCityServiceContent(
     heading: `Book Your ${focusName} in ${city.name} Today`,
     paragraphs: [
       `If you have visible mold, a recent water event, an unexplained musty odor, or symptoms that improve when you leave the property, do not wait. Mold problems are dramatically less expensive to address in the first week than in the first month. Call ACD Mold at ${business.phoneDisplay} or book online and we will confirm an appointment in ${city.name} for the next available window — including same-day appointments for confirmed emergencies.`,
-      `Every ${focusName.toLowerCase()} appointment in ${city.name} comes with a written scope, AIHA-accredited lab analysis when sampling is performed, plain-English written reports, and a workmanship guarantee on remediation work. We are local, we are licensed, and we have the references and reviews from your neighbors to prove it.`,
+      `Every ${focusName.toLowerCase()} appointment in ${city.name} comes with a written scope, AIHA-accredited lab analysis when sampling is performed, and plain-English written reports. When remediation is needed, our licensed partner crews stand behind their workmanship and we verify the result with independent clearance testing.`,
     ],
   });
 
@@ -289,15 +275,15 @@ export function generateCityServiceContent(
   const cityFaqs = [
     {
       q: `Do you serve all of ${city.name}?`,
-      a: `Yes. ACD Mold serves every ${city.name} ZIP code (${city.zips.join(', ')}) and the surrounding ${city.region}. Our headquarters at ${business.address.full} is a short drive from your property and we maintain certified inspectors and remediation crews on call throughout the area.`,
+      a: `Yes. ACD Mold serves every ${city.name} ZIP code (${city.zips.join(', ')}) and the surrounding ${city.region}. We are a service-area business based in Encino and send certified inspectors to you; remediation, when needed, is handled by licensed partner crews we coordinate.`,
     },
     {
       q: `How quickly can you get to my ${city.name} property?`,
       a: `Standard appointments in ${city.name} are usually available within 24–48 hours. For confirmed water emergencies and same-day situations, we can typically dispatch a certified inspector within 2–4 hours.`,
     },
     {
-      q: `Are you licensed to perform mold remediation in ${city.name}?`,
-      a: `Yes. ACD Mold is a CSLB-licensed contractor in California, fully bonded, and carrying $2M general liability insurance. We provide certificates of insurance and license verification to ${city.name} property managers and HOAs on request.`,
+      q: `Is remediation in ${city.name} licensed and insured?`,
+      a: `California does not issue a mold-specific license, so remediation is performed under a CSLB contractor license. ACD Mold's role is inspection, testing, and independent clearance; the physical removal is handled by licensed, insured remediation partners we coordinate, and we can provide their license and insurance details for ${city.name} property managers and HOAs on request.`,
     },
     {
       q: `What does ${focusName.toLowerCase()} typically cost in ${city.name}?`,

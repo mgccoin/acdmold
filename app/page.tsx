@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
   // The layout title template does NOT apply to the root page (same segment),
   // so the brand must be included explicitly here.
   title: `Mold Testing, Inspection & Remediation in Los Angeles County, CA | ${business.name}`,
-  description: `${business.shortDescription} Serving ${cities.length}+ cities across Los Angeles and Ventura County. Same-day appointments, AIHA-accredited lab results, IICRC-certified crews. Call ${business.phoneDisplay}.`,
+  description: `${business.shortDescription} Serving ${cities.length}+ cities across Los Angeles County and Ventura County. Same-day appointments and AIHA-accredited lab results. Call ${business.phoneDisplay}.`,
   path: '/',
   image: '/images/og/home.png',
   keywords: [
@@ -49,11 +49,11 @@ const homeFaqs = [
   },
   {
     q: 'Are you licensed and insured?',
-    a: 'Yes. ACD Mold is a CSLB-licensed contractor in California with $2M general liability and full workers compensation coverage. Certificates of insurance are provided same-day to property managers and HOAs on request.',
+    a: 'ACD Mold carries its own general liability insurance for inspection and testing. California issues no mold-specific license, so the physical remediation is performed under a CSLB contractor license held by the licensed, insured partner crews we coordinate. We can provide our COI and the partner’s license and insurance details to property managers and HOAs on request.',
   },
   {
     q: 'Do you do both the inspection AND the remediation?',
-    a: 'We can, but you are not obligated. Many clients prefer separate inspection and remediation companies for an unbiased third-party clearance test. We are transparent about both options on every project.',
+    a: 'Our own work is inspection, testing, and independent clearance — we do not perform the physical removal ourselves. When remediation is needed we coordinate a licensed partner crew (or you can use your own) and then independently verify the result. That separation keeps the clearance test unbiased.',
   },
   {
     q: 'Will my homeowners insurance cover mold remediation?',
@@ -61,7 +61,7 @@ const homeFaqs = [
   },
   {
     q: 'What is "black mold" and is it really dangerous?',
-    a: 'Black mold usually refers to Stachybotrys chartarum, which produces mycotoxins linked to respiratory, neurological, and immune symptoms in sensitive people. It requires elevated containment and PPE during remediation but is otherwise removable like other species when handled by certified professionals.',
+    a: 'Black mold usually refers to Stachybotrys chartarum. It can produce mycotoxins, but per the CDC a causal link to serious illness in healthy people has not been established, and "black mold" is not a distinct diagnosis. Any indoor mold should be removed regardless of type; crews often use elevated containment and PPE for Stachybotrys as a precaution.',
   },
   {
     q: 'Do you serve commercial properties and HOAs?',
@@ -92,7 +92,7 @@ const inspectionHowToSteps = [
   },
   {
     name: 'Remediation (only if needed)',
-    text: 'If active mold growth is confirmed, IICRC S520-compliant remediation establishes containment, negative air pressure, HEPA filtration, and ends with independent post-remediation verification before reoccupancy.',
+    text: 'If active mold growth is confirmed, we coordinate a licensed IICRC S520 remediation partner (containment, negative air, HEPA filtration) and then perform independent post-remediation verification before reoccupancy.',
   },
 ];
 
@@ -101,8 +101,8 @@ export default function HomePage() {
     <>
       <Hero
         eyebrow="Certified · Local · Same-Day Available"
-        title="Trusted Mold Testing, Inspection & Remediation Across Los Angeles County"
-        subtitle={`ACD Mold provides ACAC-certified inspections, AIHA-accredited lab testing, and IICRC S520 compliant remediation across ${cities.length}+ cities in Los Angeles County and Ventura County — from Beverly Hills, Santa Monica, and Pasadena to Long Beach, Burbank, Glendale, and the entire San Fernando Valley. Honest answers, transparent pricing, and a workmanship guarantee on every project.`}
+        title="Certified Mold Testing & Inspection Across Los Angeles County"
+        subtitle={`ACD Mold provides ACAC-certified inspections and AIHA-accredited lab testing across ${cities.length}+ cities in Los Angeles County and Ventura County — from Beverly Hills, Santa Monica, and Pasadena to Long Beach, Burbank, Glendale, and the entire San Fernando Valley. When remediation is needed we coordinate licensed partner crews and verify their work independently. Honest answers and transparent pricing.`}
         imageSrc="/images/hero/main-hero.png"
         imageAlt="ACD Mold inspector using thermal imaging camera in a Los Angeles County home"
       />
@@ -114,9 +114,9 @@ export default function HomePage() {
       <section className="bg-white py-10">
         <div className="container-prose">
           <p className="lead text-lg leading-relaxed text-slate-700">
-            <strong>ACD Mold</strong> is a CSLB-licensed, IICRC-certified mold testing, inspection, and remediation
-            company headquartered in <strong>Encino, California</strong>. From our office at {business.address.full} we
-            dispatch ACAC Council-Certified Microbial Investigators (CMI) and IICRC S520-trained remediation crews to{' '}
+            <strong>ACD Mold</strong> is an ACAC- and IICRC-trained mold testing and inspection
+            company headquartered in <strong>Encino, California</strong>. As a service-area business we
+            dispatch ACAC Council-Certified Microbial Investigators (CMI) to{' '}
             <strong>{cities.length}+ cities across Los Angeles County and Ventura County</strong>, including{' '}
             <strong>
               Los Angeles, Beverly Hills, Santa Monica, West Hollywood, Culver City, Marina del Rey, Venice, Pacific
@@ -127,8 +127,9 @@ export default function HomePage() {
               Highland Park, Alhambra, Arcadia, San Marino, La Cañada Flintridge, Santa Clarita, Valencia, Lancaster,
               Palmdale, Thousand Oaks, Westlake Village, Agoura Hills, Camarillo, Oxnard, Ventura, and Simi Valley
             </strong>
-            . Same-day appointments are available across the entire service area; AIHA-LAP accredited laboratory
-            analysis is included on every test; written workmanship guarantees back every remediation project.
+            . Same-day appointments are available across the service area, AIHA-LAP accredited laboratory
+            analysis is included on every test, and when remediation is required we coordinate licensed, insured
+            partner crews and verify their work with independent post-remediation clearance.
           </p>
         </div>
       </section>

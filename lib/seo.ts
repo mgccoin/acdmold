@@ -98,7 +98,7 @@ export function localBusinessJsonLd(extra?: { areaServed?: string[] }) {
     name: business.name,
     legalName: business.legalName,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
+    logo: `${SITE_URL}/images/logo.svg`,
     image: [
       `${SITE_URL}/images/storefront.png`,
       `${SITE_URL}/images/og/default.png`,
@@ -147,7 +147,8 @@ export function localBusinessJsonLd(extra?: { areaServed?: string[] }) {
     // NOTE: no aggregateRating/review markup here — Google treats self-published
     // ratings on LocalBusiness as "self-serving" and they can trigger a manual
     // action. Star ratings should come from Google Business Profile instead.
-    sameAs: Object.values(business.social),
+    // Only emit sameAs when real, owned profiles exist (see business.social).
+    ...(Object.values(business.social).length ? { sameAs: Object.values(business.social) } : {}),
     areaServed: extra?.areaServed?.map((a) => ({ '@type': 'City', name: a })) ?? [
       { '@type': 'City', name: 'Encino' },
       { '@type': 'City', name: 'Los Angeles' },
@@ -199,8 +200,13 @@ export function serviceJsonLd({
           { '@type': 'AdministrativeArea', name: 'Ventura County' },
         ],
     serviceType: name,
-    category: category ?? 'Mold Remediation',
-    ...(priceRange ? { offers: { '@type': 'Offer', priceRange, priceCurrency: 'USD' } } : {}),
+    category: category ?? 'Mold Inspection',
+    // NOTE: intentionally no `offers` block. The pricing data is prose ranges
+    // (e.g. "$395 – $595 for a typical project"), and Offer.price must be a
+    // single numeric value — a text range or "$$" in a numeric price field is
+    // invalid and yields no Service rich result anyway. Pricing stays in the
+    // visible page copy; `priceRange` is accepted for signature compatibility
+    // but no longer written into malformed structured data.
   };
 }
 
@@ -237,9 +243,9 @@ export function organizationJsonLd() {
     name: business.name,
     legalName: business.legalName,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
+    logo: `${SITE_URL}/images/logo.svg`,
     description: business.shortDescription,
-    sameAs: Object.values(business.social),
+    ...(Object.values(business.social).length ? { sameAs: Object.values(business.social) } : {}),
     contactPoint: [
       {
         '@type': 'ContactPoint',
@@ -293,19 +299,18 @@ export function webPageJsonLd({
     inLanguage: 'en-US',
     publisher: { '@id': `${SITE_URL}#organization` },
     primaryImageOfPage: `${SITE_URL}/images/og/default.png`,
-    lastReviewed: lastReviewed
-      ? new Date(lastReviewed).toISOString().slice(0, 10)
-      : new Date().toISOString().slice(0, 10),
+    // Only claim a review date when a real review actually happened (caller
+    // passes it). Never stamp build-time as a "last reviewed" date.
+    ...(lastReviewed ? { lastReviewed: new Date(lastReviewed).toISOString().slice(0, 10) } : {}),
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: speakableSelectors,
     },
-    reviewedBy: {
-      '@type': 'Person',
-      name: 'ACD Mold Lead Inspector',
-      jobTitle: 'ACAC Council-Certified Microbial Investigator (CMI)',
-      worksFor: { '@id': `${SITE_URL}#business` },
-    },
+    // NOTE: `reviewedBy` intentionally removed. It previously asserted a
+    // schema.org Person ("ACD Mold Lead Inspector", ACAC CMI) reviewed every
+    // one of ~5,000 auto-generated pages — a fabricated-authorship signal.
+    // Re-add ONLY with a real, named person (+ resolvable sameAs/url) on the
+    // specific pages that person actually reviewed.
   };
 }
 
@@ -331,10 +336,15 @@ export function articleJsonLd({
 }) {
   const fullUrl = url.startsWith('http') ? url : `${SITE_URL}${url}`;
   const img = image ?? '/images/og/default.png';
-  const published = datePublished
-    ? new Date(datePublished).toISOString()
-    : new Date(Date.now() - 1000 * 60 * 60 * 24 * 90).toISOString();
-  const modified = dateModified ? new Date(dateModified).toISOString() : new Date().toISOString();
+  // Only emit dates that are REAL. Previously datePublished defaulted to
+  // "now − 90 days" and dateModified to build time on every page — a
+  // fabricated-freshness signal that rewrote every page's dateModified on each
+  // deploy. Callers with genuine dates (e.g. the blog) pass them; programmatic
+  // pages omit dates rather than inventing them.
+  const published = datePublished ? new Date(datePublished).toISOString() : undefined;
+  const modified = dateModified
+    ? new Date(dateModified).toISOString()
+    : published;
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -349,8 +359,8 @@ export function articleJsonLd({
       url: SITE_URL,
     },
     publisher: { '@id': `${SITE_URL}#organization` },
-    datePublished: published,
-    dateModified: modified,
+    ...(published ? { datePublished: published } : {}),
+    ...(modified ? { dateModified: modified } : {}),
     ...(wordCount ? { wordCount } : {}),
     inLanguage: 'en-US',
     isAccessibleForFree: true,
@@ -409,7 +419,7 @@ export function definedTermSetJsonLd() {
     {
       term: 'Stachybotrys chartarum',
       definition:
-        'A greenish-black mold species, commonly called "black mold," that thrives on cellulose materials kept wet for 7+ days. Linked to mycotoxin exposure and elevated respiratory symptoms.',
+        'A greenish-black mold, commonly called "black mold," that grows on cellulose materials kept wet for several days. Like other indoor molds it should be removed along with its moisture source; per the CDC, a causal link between Stachybotrys and serious health effects in healthy people has not been established, and remediation does not depend on species.',
     },
     {
       term: 'AIHA-LAP Accredited Laboratory',
@@ -429,7 +439,7 @@ export function definedTermSetJsonLd() {
     {
       term: 'Post-Remediation Verification (PRV)',
       definition:
-        'An independent third-party visual and air-quality inspection confirming that a completed mold remediation project meets the IICRC S520 clearance criteria and the affected area is safe to reoccupy.',
+        'An independent third-party visual and air-quality inspection confirming that a completed mold remediation project meets the IICRC S520 clearance criteria — spore counts at or below the outdoor baseline with no visible growth — before reoccupancy.',
     },
     {
       term: 'Condition 1, 2, 3 (IICRC)',

@@ -19,7 +19,7 @@ export function GET() {
   lines.push(`> ${business.shortDescription}`);
   lines.push('');
   lines.push(
-    `${business.name} is a licensed, insured, and certified mold testing, inspection, and remediation company headquartered at ${business.address.full}, serving Los Angeles County and Ventura County across ${cities.length} cities and neighborhoods.`
+    `${business.name} is a certified, insured mold testing and inspection company headquartered at ${business.address.full}, serving Los Angeles County and Ventura County across ${cities.length} cities and neighborhoods. ACD Mold performs inspection, AIHA-accredited lab testing, and independent post-remediation clearance; physical remediation is carried out by licensed, insured partner crews that ACD coordinates and independently verifies.`
   );
   lines.push('');
 
@@ -36,9 +36,9 @@ export function GET() {
   lines.push(`- Service area: Los Angeles County, Ventura County, California (${cities.length} cities)`);
   lines.push(`- Years in business: ${business.yearsInBusiness}+`);
   lines.push(`- Projects completed: ${business.projectsCompleted.toLocaleString()}+`);
-  lines.push(`- Customer rating: ${business.averageRating}★ across ${business.reviewCount}+ verified reviews`);
-  lines.push(`- License: CSLB-licensed contractor (California State Licensing Board)`);
-  lines.push(`- Insurance: $2,000,000 general liability + full workers compensation`);
+  lines.push(`- Customer rating: ${business.averageRating}★ across ${business.reviewCount}+ reviews`);
+  lines.push(`- Licensing: California issues no mold-specific license; ACD Mold performs inspection/testing/clearance, and remediation is performed by CSLB-licensed partner crews`);
+  lines.push(`- Insurance: general liability; remediation partners carry their own CSLB license and insurance`);
   lines.push(`- Languages: English, Spanish`);
   lines.push(`- Payment: Cash, Check, Visa, MasterCard, American Express, Discover, ACH`);
   lines.push('');
@@ -49,7 +49,7 @@ export function GET() {
     lines.push(`- ${cert}`);
   }
   lines.push('');
-  lines.push('All remediation work is performed per the IICRC S520 Standard for Professional Mold Remediation. All lab samples are analyzed by AIHA-LAP accredited third-party laboratories.');
+  lines.push('Coordinated remediation partners work to the IICRC S520 Standard for Professional Mold Remediation, and ACD Mold verifies the result with independent clearance testing. All lab samples are analyzed by AIHA-LAP accredited third-party laboratories.');
   lines.push('');
 
   // ---------- 3. Services + pricing matrix ----------
@@ -143,7 +143,7 @@ export function GET() {
   lines.push(`- Visit: ${SITE_URL}`);
   lines.push(`- Office: ${business.address.full}`);
   lines.push('- Same-day appointments available across all listed cities.');
-  lines.push('- AIHA-LAP accredited lab analysis on every test, IICRC S520-compliant remediation, written workmanship guarantee on all remediation work.');
+  lines.push('- AIHA-LAP accredited lab analysis on every test; remediation coordinated through licensed IICRC S520 partner crews with independent post-remediation clearance.');
   lines.push('- For media / press inquiries: info@acdmold.com');
   lines.push('');
 

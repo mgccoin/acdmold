@@ -14,7 +14,7 @@ import { getRecentPosts } from '@/lib/blog';
 export const metadata = buildMetadata({
   title: 'Mold Resources & Guides — Los Angeles County, CA',
   description:
-    'In-depth, science-based mold testing, inspection, and remediation guides for Los Angeles County and Ventura County homeowners. Costs, insurance, health, certifications — written and reviewed by certified inspectors.',
+    'In-depth, science-based mold testing, inspection, and remediation guides for Los Angeles County and Ventura County homeowners. Costs, insurance, health, certifications — grounded in primary EPA, CDC, CDPH, and IICRC guidance.',
   path: '/blog',
   keywords: [
     'mold inspection guide Los Angeles',
@@ -36,7 +36,7 @@ export default function BlogPage() {
       <Hero
         eyebrow="Free Resources"
         title="Mold Knowledge for Los Angeles County Homeowners"
-        subtitle="Honest, science-based guides written and reviewed by ACAC-certified mold inspectors and IICRC-certified remediators. No scare tactics, no upsells — just the information you need to make confident decisions."
+        subtitle="Honest, science-based guides grounded in ACAC-certified inspection experience and primary EPA, CDC, and IICRC guidance. No scare tactics, no upsells — just the information you need to make confident decisions."
         imageSrc="/images/hero/blog-hero.png"
         imageAlt="ACD Mold knowledge base for Los Angeles County homeowners"
       />
@@ -48,14 +48,13 @@ export default function BlogPage() {
               Editorial Standards
             </span>
             <h2 className="h-sectionTitle mt-2">
-              Reviewed by certified mold professionals
+              Grounded in primary authorities
             </h2>
             <p className="mt-4 text-slate-600">
-              Every article in this library is written and reviewed by an ACAC Council-Certified Microbial Investigator
-              (CMI) and IICRC-certified Applied Microbial Remediation Technician (AMRT). We cite the U.S. EPA, CDC,
-              IICRC S520 Standard, AIHA, and the California Department of Public Health throughout. If you find an
-              error, email <a href="mailto:info@acdmold.com" className="text-brand-700 underline">info@acdmold.com</a>{' '}
-              and we will correct it.
+              Our guides are written to ACD Mold's ACAC Council-Certified (CMI) inspection standards and cite the
+              U.S. EPA, CDC, IICRC S520 Standard, AIHA, and the California Department of Public Health throughout,
+              so you can verify any claim at its source. If you find an error, email{' '}
+              <a href="mailto:info@acdmold.com" className="text-brand-700 underline">info@acdmold.com</a> and we will correct it.
             </p>
           </div>
 

@@ -74,7 +74,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
     { q: `Do you serve all of ${city.name}?`, a: `Yes — every ZIP in ${city.name} (${city.zips.join(', ')}). We dispatch from our Encino headquarters at ${business.address.full}.` },
     { q: `How soon can ACD Mold come to ${city.name}?`, a: `Standard appointments are usually available within 24–48 hours. Same-day emergency service is available for active leaks and time-sensitive real estate situations.` },
     { q: `What does a mold inspection cost in ${city.name}?`, a: `Most ${city.name} residential inspections fall in the $295–$595 range. Lab testing, when added, runs $95–$195 per sample with AIHA-accredited analysis.` },
-    { q: `Are you licensed to do mold remediation in ${city.name}?`, a: `Yes. ACD Mold is a CSLB-licensed contractor in California with $2M general liability and full workers compensation. COIs available same-day for property managers and HOAs in ${city.name}.` },
+    { q: `Is remediation in ${city.name} licensed and insured?`, a: `California issues no mold-specific license, so remediation is performed under a CSLB contractor license. ACD Mold handles the inspection, testing, and independent clearance; the removal is done by licensed, insured remediation partners we coordinate. We can provide our COI and the partner's license and insurance details to ${city.name} property managers and HOAs on request.` },
     { q: `Do you handle insurance claims in ${city.name}?`, a: `Yes — we document losses in the format insurance carriers require, communicate with adjusters when authorized, and provide AIHA-accredited lab reports that satisfy claim documentation requirements.` },
   ];
 
@@ -84,7 +84,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       <Hero
         eyebrow={`Serving ${city.name}, ${city.region}`}
         title={`Mold Testing & Remediation in ${city.name}, CA`}
-        subtitle={`Certified ACD Mold inspectors and IICRC-licensed remediation crews serve every ZIP code in ${city.name} (${city.zips.join(', ')}). Same-day appointments, AIHA-accredited lab results, transparent pricing, and a workmanship guarantee on every project.`}
+        subtitle={`Certified ACD Mold inspectors serve every ZIP code in ${city.name} (${city.zips.join(', ')}), with licensed remediation partners coordinated when removal is needed. Same-day appointments, AIHA-accredited lab results, and transparent pricing.`}
         imageSrc="/images/hero/city-hero.png"
         imageAlt={`Mold inspection in ${city.name}, California`}
       />
@@ -111,7 +111,6 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
             }),
             breadcrumbJsonLd([
               { name: 'Home', url: '/' },
-              { name: 'Service Area', url: '/service-area' },
               { name: city.name, url: `/${city.slug}` },
             ]),
             faqJsonLd(cityFaqs),

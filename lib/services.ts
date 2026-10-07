@@ -64,21 +64,21 @@ export const services: Service[] = [
     shortDescription:
       'AIHA-accredited lab analysis with air, surface, and bulk sampling for accurate mold identification and exposure data.',
     longDescription:
-      'Mold testing reveals what is actually growing in your home or building, where the spores are coming from, and whether the indoor environment is safe for the people who occupy it. ACD Mold uses calibrated Air-O-Cell cassettes, swab and tape-lift sampling, and AIHA-accredited third-party laboratories so every result is defensible for insurance, real estate, or medical purposes.',
+      'Mold testing identifies the types and concentrations of mold present indoors and how they compare to an outdoor baseline. ACD Mold uses calibrated Air-O-Cell cassettes, swab and tape-lift sampling, and AIHA-accredited third-party laboratories so results are well-documented for insurance, real-estate, or clearance purposes. Testing characterizes the sample taken at that time and place; it does not by itself diagnose illness or certify a building as "safe."',
     heroImage: '/images/services/mold-testing-hero.png',
     cardImage: '/images/services/mold-testing-card.png',
     metaDescription:
       'Certified mold testing with AIHA-accredited lab results. Air, surface, and bulk sampling for homes and businesses. Same-day appointments across Southern California.',
     whyMatters: [
-      'Identifies hidden mold species before health symptoms escalate',
-      'Provides legally defensible documentation for insurance claims and real estate transactions',
-      'Confirms whether remediation work was successful and the space is safe to reoccupy',
-      'Distinguishes harmless household molds from toxic Stachybotrys, Aspergillus, and Chaetomium',
-      'Establishes a baseline indoor air quality reading you can compare against future tests',
+      'Identifies the mold genera present and their concentrations when growth is hidden or suspected',
+      'Provides well-documented results for insurance claims and real-estate transactions',
+      'Verifies whether remediation met IICRC S520 clearance criteria (spore counts at or below the outdoor baseline, no visible growth)',
+      'Identifies water-damage indicator species such as Stachybotrys, Aspergillus, and Chaetomium and their concentrations for documentation and scope',
+      'Establishes a baseline indoor reading you can compare against future tests',
     ],
     ourApproach: [
       'Walk-through interview to understand symptoms, prior leaks, and problem areas',
-      'Calibrated air sampling (typically 75 L/min for 5 minutes) using fresh Air-O-Cell cassettes',
+      'Calibrated air sampling (typically 15 L/min for 5–10 minutes) using fresh Air-O-Cell cassettes',
       'Outdoor control sample to provide a comparative baseline for the lab',
       'Surface samples by swab or tape-lift on visible suspect growth',
       'Chain-of-custody shipment to an AIHA-LAP accredited laboratory',
@@ -137,7 +137,7 @@ export const services: Service[] = [
       sub(
         'Lab-Based Mold Testing',
         'AIHA-accredited third-party laboratory analysis with full chain-of-custody documentation.',
-        'All ACD Mold samples are sent to an independent AIHA-LAP accredited laboratory for analysis. We never read our own samples. This separation ensures that results are defensible in court, accepted by insurance carriers, and trusted by physicians.',
+        'All ACD Mold samples are sent to an independent AIHA-LAP accredited laboratory for analysis. We never read our own samples. This separation produces results that are well-documented, accepted by insurance carriers, and suitable for real-estate and legal use.',
         ['Independent third-party verification', 'Court-admissible chain of custody', 'Accepted by major insurance carriers', 'Detailed species and concentration breakdown'],
         ['Field sampling with sealed chain-of-custody', 'Overnight shipping to AIHA-LAP lab', 'Microscopic and (when needed) culture analysis', 'Lab issues raw report with QA/QC data', 'ACD Mold inspector interprets and writes plain-English summary'],
         'Included with all testing packages',
@@ -157,7 +157,7 @@ export const services: Service[] = [
         '1–3 hours on site, 3–7 days for results',
         [
           { q: 'What is post-remediation clearance testing?', a: 'After a remediation contractor finishes, an independent inspector verifies that spore counts are at or below outdoor baseline and that visible growth has been removed. This is required by most insurance policies before final payment.' },
-          { q: 'Do you offer ERMI testing?', a: 'Yes. ERMI (Environmental Relative Moldiness Index) and HERTSMI-2 dust testing are available for clients with chronic inflammatory response syndrome (CIRS) or physician-ordered testing.' },
+          { q: 'Do you offer ERMI testing?', a: 'We can collect ERMI (Environmental Relative Moldiness Index) and HERTSMI-2 dust samples when a treating physician specifically requests them. Note: the EPA developed ERMI as a research tool and does not endorse it for routine home testing or as a standalone health-risk measure, so we provide it only as physician-directed sampling, not as a diagnosis.' },
         ]
       ),
     ],
@@ -287,36 +287,40 @@ export const services: Service[] = [
     name: 'Mold Remediation',
     slug: 'mold-remediation',
     icon: 'shield',
-    tagline: 'Licensed, Insured Mold Remediation Done Right',
+    tagline: 'Managed Mold Remediation with Independent Clearance',
     shortDescription:
-      'IICRC S520 compliant mold remediation with full containment, HEPA filtration, and post-remediation clearance.',
+      'We scope the work, coordinate licensed, insured IICRC S520 remediation partners, and verify the result with independent clearance testing.',
     longDescription:
-      'Mold remediation is not just cleaning — it is a controlled process of containment, removal, and verification designed to prevent cross-contamination and protect occupants. ACD Mold follows the IICRC S520 standard on every project, from a single-room bathroom remediation to whole-home post-flood cleanup.',
+      'ACD Mold’s own services are inspection, testing, and independent clearance — we do not perform the physical removal ourselves. When remediation is needed, we prepare the scope from the inspection findings, coordinate a licensed, insured remediation partner who works to the IICRC S520 standard (containment, HEPA filtration, controlled removal, verification), and then act as the independent third party that confirms the area meets clearance criteria. You get managed remediation plus an unbiased check that the work was done right — and you are free to use your own remediation contractor if you prefer.',
     heroImage: '/images/services/mold-remediation-hero.png',
     cardImage: '/images/services/mold-remediation-card.png',
     metaDescription:
-      'Licensed mold remediation following IICRC S520 standards. Full containment, HEPA filtration, and third-party clearance testing. Free estimates across Southern California.',
+      'Managed mold remediation: ACD Mold scopes the work, coordinates licensed IICRC S520 remediation partners, and provides independent post-remediation clearance testing across Los Angeles County.',
     whyMatters: [
       'Stops active growth before it spreads to additional building materials',
-      'Removes mycotoxins and allergens that cause respiratory and immune symptoms',
-      'Restores property value and prevents structural damage',
-      'Satisfies insurance, real estate, and code-compliance requirements',
-      'Protects occupants — especially children, elderly, and immunocompromised — from ongoing exposure',
+      'Reduces occupant exposure to mold and its allergens, especially for sensitive individuals',
+      'Protects property value and helps prevent further moisture damage',
+      'Produces documentation that supports insurance and real-estate requirements',
+      'Keeps the party scoping and verifying the work separate from the party performing it',
     ],
     ourApproach: [
-      'IICRC S520 compliant scope of work prepared from inspection findings',
-      'Containment installation with 6-mil poly and zipper doors',
-      'Negative air pressure with HEPA-filtered air scrubbers (minimum 4 air changes per hour)',
-      'Removal of mold-contaminated porous materials',
-      'HEPA vacuuming and antimicrobial treatment of remaining structure',
-      'Post-remediation visual verification + independent third-party clearance testing',
-      'Reconstruction coordination if needed',
+      'IICRC S520-based scope of work prepared from the inspection findings',
+      'Matching the project to a licensed, insured remediation partner',
+      'Partner establishes containment, negative air, and HEPA filtration scaled to the project',
+      'Controlled removal of affected porous materials by the partner crew',
+      'HEPA vacuuming and treatment of the remaining structure',
+      'Independent ACD Mold post-remediation clearance (visual + sampling) against the outdoor baseline',
+      'Reconstruction referral/coordination if needed',
     ],
-    certifications: ['IICRC AMRT (Applied Microbial Remediation Technician)', 'IICRC WRT (Water Damage Restoration)', 'CSLB licensed C-61/D-64 (limited specialty)'],
+    // ACD Mold’s own credentials are inspection/clearance (ACAC, IICRC training);
+    // the remediation crew’s CSLB contractor license and IICRC AMRT/WRT belong to
+    // the partner. California issues no mold-specific license. TODO(owner): list
+    // the real partner license/insurance details to display on request.
+    certifications: ['ACAC CMI-certified inspection & clearance', 'AIHA-LAP accredited lab partners', 'Remediation partners: CSLB-licensed, IICRC S520 / AMRT'],
     faqs: [
       {
         q: 'How much does mold remediation cost?',
-        a: 'Small isolated jobs (one bathroom, under 10 sq ft) typically run $1,500–$3,500. Mid-size projects (one room, 10–30 sq ft) run $3,500–$7,500. Large or whole-home projects can range from $7,500–$30,000+.',
+        a: 'Small isolated jobs (one bathroom, under 10 sq ft) typically run $1,500–$3,500. Mid-size projects (one room, 10–30 sq ft) run $3,500–$7,500. Large or whole-home projects can range from $7,500–$30,000+. ACD Mold provides the scope and a written estimate from the coordinated remediation partner before any work begins.',
       },
       {
         q: 'Will my insurance cover mold remediation?',
@@ -327,8 +331,8 @@ export const services: Service[] = [
         a: 'Most small remediations let occupants stay (with the work area sealed off). Larger projects involving whole rooms or HVAC contamination may require relocation for 2–7 days.',
       },
       {
-        q: 'Do you guarantee your work?',
-        a: 'Yes. All ACD Mold remediation projects include a written workmanship guarantee plus a third-party clearance test that we are willing to re-do at no charge if the first one fails.',
+        q: 'Who stands behind the remediation work?',
+        a: 'The licensed remediation partner is responsible for their workmanship, and ACD Mold provides the independent post-remediation clearance test. Because the company verifying the work is not the company that performed it, the clearance result is unbiased.',
       },
     ],
     subServices: [
@@ -365,7 +369,7 @@ export const services: Service[] = [
         '$3,500 – $20,000+',
         '2 – 7 days',
         [
-          { q: 'Is black mold really more dangerous?', a: 'Stachybotrys produces mycotoxins that are linked to respiratory, neurological, and immune symptoms in sensitive individuals. The remediation methodology is essentially the same but the precautions are elevated.' },
+          { q: 'Is black mold really more dangerous?', a: 'Stachybotrys can produce mycotoxins, which is where its reputation comes from, but per the CDC a causal link to serious illness in healthy people has not been established, and any indoor mold should be removed regardless of type. The remediation methodology is essentially the same; crews often elevate containment and PPE as a precaution.' },
         ]
       ),
       sub(
@@ -540,7 +544,7 @@ export const services: Service[] = [
         'Clearance testing is the final step of any professional mold remediation project. We sample inside the still-standing containment to verify spore counts are at or below outdoor baseline and that previously contaminated surfaces are clean.',
         ['Independent third-party verification', 'AIHA-LAP accredited lab', 'Pass/fail report with raw data', 'Insurance carrier accepted format'],
         ['Pre-clearance review of remediation scope', 'Visual verification', 'Air sampling inside containment + outdoor control', 'Surface sampling of previously affected substrates', 'Lab analysis', 'Written clearance report'],
-        '$495 – $895',
+        '$395 – $695',
         '1 – 2 hours on site, 3–5 days for lab',
         [
           { q: 'Can you do clearance for work another company did?', a: 'Yes — and you usually want it that way for the unbiased perspective.' },
@@ -568,7 +572,7 @@ export const services: Service[] = [
     shortDescription:
       'Same-day emergency mold inspection, testing, and remediation for floods, sewage backups, and urgent contamination.',
     longDescription:
-      'Mold emergencies happen — burst pipes at midnight, sewage backups during a holiday weekend, sudden visible black mold growth before a real estate closing. ACD Mold maintains a 24/7 emergency line and dispatches certified inspectors and licensed remediation crews on a same-day basis across Los Angeles and Ventura County.',
+      'Mold emergencies happen — burst pipes at midnight, sewage backups during a holiday weekend, sudden visible mold growth before a real estate closing. ACD Mold maintains a 24/7 line, dispatches certified inspectors on a same-day basis, and mobilizes licensed, insured remediation partners when urgent cleanup is required across Los Angeles and Ventura County.',
     heroImage: '/images/services/emergency-mold-hero.png',
     cardImage: '/images/services/emergency-mold-card.png',
     metaDescription:
@@ -587,7 +591,7 @@ export const services: Service[] = [
       'Coordination with plumbers, electricians, and water-extraction crews',
       'Insurance documentation from the first hour',
     ],
-    certifications: ['IICRC WRT Water Damage Restoration', 'IICRC AMRT Applied Microbial Remediation', 'CSLB licensed contractor'],
+    certifications: ['ACAC CMI-certified inspection & clearance', 'Licensed, insured remediation partners (CSLB, IICRC WRT/AMRT)', 'AIHA-LAP accredited lab partners'],
     faqs: [
       {
         q: 'How fast can you arrive?',

@@ -111,7 +111,6 @@ export default async function CityServicePage({ params }: { params: Promise<{ ci
             }),
             breadcrumbJsonLd([
               { name: 'Home', url: '/' },
-              { name: 'Service Area', url: '/service-area' },
               { name: city.name, url: `/${city.slug}` },
               { name: service.name, url: `/${city.slug}/${service.slug}` },
             ]),

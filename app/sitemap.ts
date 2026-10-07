@@ -20,8 +20,15 @@ const RESERVED = new Set([
   '_next',
 ]);
 
+// Stable content-version date for programmatic pages. Using `new Date()` here
+// stamped all ~5,000 URLs with the build timestamp on every deploy — a
+// non-credible freshness signal Google learns to ignore. Bump this only when
+// the city/service content templates are genuinely revised. Blog posts carry
+// their own real publish/update dates below.
+const LAST_CONTENT_UPDATE = new Date('2026-10-01T00:00:00Z');
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const now = LAST_CONTENT_UPDATE;
   const entries: MetadataRoute.Sitemap = [];
 
   // ---------- Static marketing pages ----------
@@ -37,7 +44,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   for (const r of staticRoutes) {
     entries.push({
-      url: `${SITE_URL}${r.path || '/'}`,
+      // No trailing slash on the homepage, to match the rel=canonical form.
+      url: `${SITE_URL}${r.path}`,
       lastModified: now,
       changeFrequency: r.changeFrequency,
       priority: r.priority,

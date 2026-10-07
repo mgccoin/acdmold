@@ -1,45 +1,17 @@
 import { Star, Quote } from 'lucide-react';
 
-const testimonials = [
-  {
-    name: 'Jessica P.',
-    location: 'Sherman Oaks, CA',
-    quote: 'After a slab leak we were terrified about hidden mold. ACD found growth behind a kitchen cabinet that two other inspectors had missed. The lab report supported our insurance claim and we got fully reimbursed.',
-    date: '2026-02-14',
-  },
-  {
-    name: 'Marcus W.',
-    location: 'Long Beach, CA',
-    quote: 'I am a property manager for 38 units. ACD has done inspections and remediation for us across three buildings. Their reports are thorough enough that my owners actually read them. Best mold company I have used.',
-    date: '2026-01-22',
-  },
-  {
-    name: 'Linda H.',
-    location: 'Pasadena, CA',
-    quote: 'They came out the same day for a real estate closing. The inspector explained everything in language I could actually understand. We closed on time and I felt confident in the property.',
-    date: '2025-12-09',
-  },
-  {
-    name: 'Daniel R.',
-    location: 'Encino, CA',
-    quote: 'My kid has asthma and we suspected mold in the bathroom. The remediation crew was clean, professional, and finished a day early. Air quality test came back perfectly clear afterward.',
-    date: '2025-11-30',
-  },
-  {
-    name: 'Rachel T.',
-    location: 'Thousand Oaks, CA',
-    quote: 'After the wildfires we needed mold testing on a house we were considering buying. ACD turned around results in 48 hours and walked us through what every number meant.',
-    date: '2025-11-04',
-  },
-  {
-    name: 'Brian C.',
-    location: 'Studio City, CA',
-    quote: 'I called four mold companies. ACD was the only one that did NOT try to immediately upsell me to remediation. Honest, certified, and reasonably priced. Hard to find.',
-    date: '2025-10-18',
-  },
-];
+// IMPORTANT: Only real, attributable customer reviews belong here. The previous
+// entries were placeholder quotes attributed to named individuals and have been
+// removed — publishing invented testimonials is deceptive and an FTC exposure.
+// TODO(owner): populate from genuine reviews (ideally synced from the verified
+// Google Business Profile, with the reviewer's real display name and a link to
+// the live review). Until this array has real entries, the section renders
+// nothing rather than showing fabricated social proof.
+type Testimonial = { name: string; location: string; quote: string; date: string; sourceUrl?: string };
+const testimonials: Testimonial[] = [];
 
 export default function Testimonials() {
+  if (testimonials.length === 0) return null;
   return (
     <section className="section bg-gradient-to-br from-brand-50 to-white">
       <div className="container-prose">

@@ -1,10 +1,13 @@
 import Link from 'next/link';
-import { Phone, ArrowRight, ShieldCheck, MapPin, BookOpen, Calendar } from 'lucide-react';
+import { Phone, ArrowRight, ShieldCheck, MapPin, BookOpen } from 'lucide-react';
 import type { GeneratedContent } from '@/lib/content';
 import { business } from '@/lib/business';
 import { AUTHORITY_SOURCES } from '@/lib/seo';
 
-const REVIEWED_LABEL = `Reviewed by ACD Mold's ACAC Council-Certified Microbial Investigator (CMI) team`;
+// Standards-alignment statement, NOT a per-page human-review claim. (Do not
+// stamp a "last reviewed: <today>" date here — it was fabricated freshness that
+// changed on every build across ~5,000 auto-generated pages.)
+const STANDARDS_LABEL = `Written to ACD Mold's ACAC Council-Certified (CMI) inspection standards and the authorities cited below`;
 
 export default function GeneratedArticle({
   content,
@@ -17,29 +20,18 @@ export default function GeneratedArticle({
   serviceLabel?: string;
   cityName?: string;
 }) {
-  const reviewedDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-
   return (
     <section className="bg-white">
       <div className="container-prose grid gap-10 py-12 lg:grid-cols-12 lg:py-16">
         <article className="prose-content lg:col-span-8" itemScope itemType="https://schema.org/Article">
           <meta itemProp="author" content={business.name} />
-          <meta itemProp="datePublished" content={new Date(Date.now() - 1000 * 60 * 60 * 24 * 90).toISOString()} />
-          <meta itemProp="dateModified" content={new Date().toISOString()} />
+          {/* No datePublished/dateModified microdata: these pages have no real
+              publication/revision dates, and inventing them is a fake-freshness
+              signal. Add them only when a page carries a genuine date. */}
 
-          {/* E-E-A-T byline — strong GEO signal */}
           <div className="not-prose mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-brand-100 bg-brand-50/40 px-4 py-3 text-xs text-slate-600">
             <ShieldCheck className="h-4 w-4 text-brand-700" />
-            <span className="font-semibold text-brand-900">{REVIEWED_LABEL}</span>
-            <span aria-hidden="true">·</span>
-            <Calendar className="h-3.5 w-3.5 text-brand-700" />
-            <span>
-              Last reviewed: <time dateTime={new Date().toISOString().slice(0, 10)}>{reviewedDate}</time>
-            </span>
+            <span className="font-semibold text-brand-900">{STANDARDS_LABEL}</span>
           </div>
 
           <p className="lead text-lg text-slate-700" itemProp="description">
@@ -70,7 +62,7 @@ export default function GeneratedArticle({
               Authoritative Sources Referenced
             </h2>
             <p className="text-sm text-slate-600">
-              All ACD Mold inspection and remediation protocols are aligned with the published guidance of the following recognized authorities. Click through to verify any statement on this page:
+              ACD Mold's inspection and testing protocols — and the remediation partners we coordinate — follow the published guidance of the recognized authorities below. Click through to verify any statement on this page:
             </p>
             <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
               {AUTHORITY_SOURCES.map((s) => (
@@ -134,7 +126,7 @@ export default function GeneratedArticle({
 
             <div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm">
               <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                <MapPin className="h-3.5 w-3.5" /> Visit Us
+                <MapPin className="h-3.5 w-3.5" /> Based In
               </div>
               <div className="font-semibold text-brand-900">{business.name}</div>
               <div className="text-slate-600">{business.address.full}</div>

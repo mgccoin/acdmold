@@ -19,7 +19,7 @@ export default function ServiceAreaPage() {
       <Hero
         eyebrow="Local Mold Specialists"
         title={`Mold Services in ${cities.length}+ Cities Across Southern California`}
-        subtitle="ACD Mold dispatches certified inspectors and IICRC-licensed remediation crews from our Encino headquarters across Los Angeles County and Ventura County. Find your city below."
+        subtitle="ACD Mold dispatches certified inspectors from our Encino base across Los Angeles County and Ventura County, and coordinates licensed remediation partners when removal is needed. Find your city below."
         imageSrc="/images/hero/service-area-hero.png"
         imageAlt="Map of ACD Mold service area"
       />
