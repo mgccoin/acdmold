@@ -1,9 +1,10 @@
 export const business = {
   name: 'ACD Mold',
   legalName: 'ACD Mold Inspection & Remediation',
-  // Canonical host. The live site serves on www (the apex 308-redirects to it),
-  // so every canonical tag, sitemap <loc>, robots host, OG url and JSON-LD @id
-  // must use www to agree with the host Google actually fetches.
+  // Canonical host. The live site serves on www; the apex is redirected to it
+  // permanently (308) in next.config.mjs, so every canonical tag, sitemap <loc>,
+  // robots host, OG url and JSON-LD @id must use www to agree with the host
+  // Google actually fetches.
   url: 'https://www.acdmold.com',
   phone: '+14243527039',
   phoneDisplay: '(424) 352-7039',

@@ -7,6 +7,20 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  // Canonical host is www (see lib/business.ts). Enforce apex -> www with a
+  // permanent 308 so Google consolidates signals onto one host. The Vercel
+  // domain-level redirect was observed as a 307 (temporary), which never
+  // consolidates; this guarantees the permanent redirect at the app layer too.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'acdmold.com' }],
+        destination: 'https://www.acdmold.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
